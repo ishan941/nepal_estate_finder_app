@@ -3,7 +3,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/pages/signin_page.dart';
+import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
 import 'package:provider_with_clean_architecture/features/resturent/presentation/pages/resturent_form.dart';
 import 'package:provider_with_clean_architecture/features/resturent/presentation/provider/resturent_provider.dart';
 import 'package:provider_with_clean_architecture/features/student/presentation/pages/student_form.dart';
@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const SigninPage()),
+          home: const LoginPage()),
     );
   }
 }
