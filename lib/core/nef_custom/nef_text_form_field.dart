@@ -22,6 +22,7 @@ class NefTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onChanged,
+    required FocusNode focusNode,
   }) : super(key: key);
 
   @override
@@ -39,14 +40,14 @@ class NefTextFormField extends StatelessWidget {
           hintText: hintText,
           prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(NefSpacing.spacing1_5),
+            borderRadius: BorderRadius.circular(NefSpacing.spacing2),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(NefSpacing.spacing1_5),
+            borderRadius: BorderRadius.circular(NefSpacing.spacing2),
             borderSide: const BorderSide(color: Colors.blue),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(NefSpacing.spacing1_5),
+            borderRadius: BorderRadius.circular(NefSpacing.spacing2),
             borderSide: const BorderSide(color: Colors.grey),
           ),
         ),

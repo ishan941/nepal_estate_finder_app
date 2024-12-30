@@ -5,15 +5,16 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_f
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
+import 'package:provider_with_clean_architecture/features/login/presentation/pages/sign_up_page.dart';
 
-class SigninPage extends StatefulWidget {
-  const SigninPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SigninPage> createState() => _SigninPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SigninPageState extends State<SigninPage> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   String errorMessage = '';
@@ -46,7 +47,6 @@ class _SigninPageState extends State<SigninPage> {
   @override
   void initState() {
     super.initState();
-    // Unfocus text fields when the page is loaded to avoid the keyboard being on
     _emailFocusNode.unfocus();
     _passwordFocusNode.unfocus();
   }
@@ -56,7 +56,6 @@ class _SigninPageState extends State<SigninPage> {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          // Dismiss the keyboard when tapping outside of the text fields
           FocusScope.of(context).unfocus();
         },
         child: NefPadding(
@@ -71,28 +70,23 @@ class _SigninPageState extends State<SigninPage> {
               NefTextFormField(
                 hintText: emailStr,
                 controller: _emailController,
-                focusNode: _emailFocusNode, // Attach the FocusNode
+                focusNode: _emailFocusNode,
               ),
-              const SizedBox(height: NefSpacing.spacing4),
               NefTextFormField(
                 hintText: passwordStr,
                 controller: _passwordController,
                 obscureText: true,
-                focusNode: _passwordFocusNode, // Attach the FocusNode
+                focusNode: _passwordFocusNode,
               ),
-              const SizedBox(height: NefSpacing.spacing4),
-              // Sign-In Button
+              const SizedBox(height: NefSpacing.spacing2),
               NefElevatedButton(
                 text: "Sign In",
                 onPressed: _handleSignIn,
               ),
-              const SizedBox(height: NefSpacing.spacing2),
-              // Continue with Google Button
               NefGradientElevatedButton(
                 label: "Continue with google",
                 onPressed: () {},
               ),
-              // Error Message
               if (errorMessage.isNotEmpty) ...[
                 const SizedBox(height: NefSpacing.spacing4),
                 Text(
@@ -100,15 +94,16 @@ class _SigninPageState extends State<SigninPage> {
                   style: const TextStyle(color: Colors.red),
                 ),
               ],
-              const SizedBox(height: NefSpacing.spacing2),
-              // Sign-Up Redirect
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () {
-                      // Navigate to Sign Up page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpPage()));
                     },
                     child: const Text(
                       'Sign Up',
