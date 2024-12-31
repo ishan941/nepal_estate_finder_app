@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:provider_with_clean_architecture/core/api_const.dart';
 import 'package:provider_with_clean_architecture/core/error/exception_error.dart';
 import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
 
@@ -14,7 +13,7 @@ class AuthDataSourceImpl implements AuthDataSource {
   @override
   Future<Map<String, dynamic>> login(String email, String password) async {
     final Response response = await dioHttp.post(
-      url: Api.baseUrl + Api.baseUrl,
+      url: "https://19bd-27-34-73-167.ngrok-free.app/api/auth/signin",
       data: {'email': email, 'password': password},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {

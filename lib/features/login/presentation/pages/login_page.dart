@@ -1,63 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_elevated_button.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
+import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
+import 'package:provider_with_clean_architecture/features/login/data/model/auth_state/auth_state.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/pages/sign_up_page.dart';
+import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String errorMessage = '';
-
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-  void _handleSignIn() {
-    final email = _emailController.text;
+  void _handleSignIn() async {
+    final email = _emailController.text.trim();
     final password = _passwordController.text;
 
     if (email.isEmpty || password.isEmpty) {
-      setState(() {
-        errorMessage = 'Please fill in both fields.';
-      });
+      _showError(context, 'Please fill in both fields.');
       return;
     }
 
-    if (email == 'test@example.com' && password == 'password') {
-      setState(() {
-        errorMessage = '';
-      });
-    } else {
-      setState(() {
-        errorMessage = 'Invalid credentials.';
-      });
+    await ref.read(authProvider.notifier).login(email, password);
+    final authState = ref.read(authProvider);
+
+    if (authState is Authenticated) {
+      InfoHelper.showSuccessToast(context, "successfully login");
+      Navigator.pushAndRemoveUntil(
+          context,
+          (MaterialPageRoute(builder: (context) => const SignUpPage())),
+          (Route<dynamic> route) => false);
+    } else if (authState is Error) {
+      InfoHelper.showSuccessToast(context, "Failed login");
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _emailFocusNode.unfocus();
-    _passwordFocusNode.unfocus();
+  void _showError(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(message, style: const TextStyle(color: Colors.red))),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authProvider);
+
     return Scaffold(
       body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
+        onTap: () => FocusScope.of(context).unfocus(),
         child: NefPadding(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -83,16 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                 text: "Sign In",
                 onPressed: _handleSignIn,
               ),
-              NefGradientElevatedButton(
-                label: "Continue with google",
-                onPressed: () {},
-              ),
-              if (errorMessage.isNotEmpty) ...[
-                const SizedBox(height: NefSpacing.spacing4),
-                Text(
-                  errorMessage,
-                  style: const TextStyle(color: Colors.red),
-                ),
+              if (authState is Loading) ...[
+                const SizedBox(height: NefSpacing.spacing2),
+                const CircularProgressIndicator(),
               ],
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
