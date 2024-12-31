@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // Add Riverpod import
 import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
 import 'package:provider_with_clean_architecture/features/resturent/presentation/pages/resturent_form.dart';
 import 'package:provider_with_clean_architecture/features/resturent/presentation/provider/resturent_provider.dart';
@@ -35,6 +35,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   void initState() {
     deepLink();
@@ -59,31 +60,21 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-            create: (_) =>
-                StudentProvider(studentUseCase: sl(), getStudentUseCase: sl())),
-        ChangeNotifierProvider(
-            create: (_) => ResturentProvider(
-                resturentUseCase: sl(),
-                getResturentUseCase: sl(),
-                deleteResturentUseCase: sl(),
-                editResturentUseCase: sl()))
-      ],
+    return ProviderScope(
+      // Wrap with ProviderScope
       child: MaterialApp(
-          navigatorKey: _navigatorKey,
-          routes: {'/studentform': (context) => StudentForm()},
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const LoginPage()),
+        navigatorKey: _navigatorKey,
+        routes: {'/studentform': (context) => StudentForm()},
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const LoginPage(),
+      ),
     );
   }
 }

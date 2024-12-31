@@ -25,6 +25,8 @@ dependencies:
   firebase_dynamic_links: ^5.4.8
   json_serializable: ^6.8.0
   freezed_annotation: ^2.4.4
+  flutter_riverpod: ^2.5.1
+  cherry_toast: ^1.11.0
 
 dev_dependencies:
   flutter_test:
