@@ -60,9 +60,12 @@ Future<void> init() async {
 //Postusecase
   sl.registerLazySingleton<LoginUseCase>(
       () => LoginUseCase(authRepository: sl()));
+  sl.registerLazySingleton<SignUpUserUseCase>(
+      () => SignUpUserUseCase(authRepository: sl()));
 //Notifier
   sl.registerFactory(() => AuthNotifier(
         loginUseCase: sl(),
+        signUpUserUseCase: sl(),
       ));
 
 //>>>>>>

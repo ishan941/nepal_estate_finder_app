@@ -24,36 +24,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final FocusNode _emailFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-  void _handleSignIn() async {
-    final email = _emailController.text.trim();
-    final password = _passwordController.text;
-
-    if (email.isEmpty || password.isEmpty) {
-      _showError(context, 'Please fill in both fields.');
-      return;
-    }
-
-    await ref.read(authProvider.notifier).login(email, password);
-    final authState = ref.read(authProvider);
-
-    if (authState is Authenticated) {
-      InfoHelper.showSuccessToast(context, "successfully login");
-      Navigator.pushAndRemoveUntil(
-          context,
-          (MaterialPageRoute(builder: (context) => const SignUpPage())),
-          (Route<dynamic> route) => false);
-    } else if (authState is Error) {
-      InfoHelper.showSuccessToast(context, "Failed login");
-    }
-  }
-
-  void _showError(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-          content: Text(message, style: const TextStyle(color: Colors.red))),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
@@ -112,6 +82,36 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _handleSignIn() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      _showError(context, 'Please fill in both fields.');
+      return;
+    }
+
+    await ref.read(authProvider.notifier).login(email, password);
+    final authState = ref.read(authProvider);
+
+    if (authState is Authenticated) {
+      InfoHelper.showSuccessToast(context, "successfully login");
+      Navigator.pushAndRemoveUntil(
+          context,
+          (MaterialPageRoute(builder: (context) => const SignUpPage())),
+          (Route<dynamic> route) => false);
+    } else if (authState is Error) {
+      InfoHelper.showSuccessToast(context, "Failed login");
+    }
+  }
+
+  void _showError(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+          content: Text(message, style: const TextStyle(color: Colors.red))),
     );
   }
 }

@@ -9,3 +9,12 @@ class LoginUseCase {
     return authRepository.login(email, password);
   }
 }
+
+class SignUpUserUseCase {
+  final AuthRepository authRepository;
+  SignUpUserUseCase({required this.authRepository});
+  Future<Map<String, dynamic>> execute(
+      String username, String email, String password) {
+    return authRepository.signUpUser(username, email, password);
+  }
+}
