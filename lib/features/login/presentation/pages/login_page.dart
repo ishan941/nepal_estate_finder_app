@@ -104,7 +104,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       InfoHelper.showSuccessToast(context, "successfully login");
       Navigator.pushAndRemoveUntil(
           context,
-          (MaterialPageRoute(builder: (context) => const homePage())),
+          (MaterialPageRoute(builder: (context) => const HomePage())),
           (Route<dynamic> route) => false);
     } else if (authState is Error) {
       InfoHelper.showSuccessToast(context, "Failed login");
