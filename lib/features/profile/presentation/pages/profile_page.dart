@@ -44,7 +44,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final userStateValue = ref.read(userState);
 
     return Scaffold(
-      appBar: NefAppBar(title: "Profile Page"),
+      appBar: NefAppBar(
+        title: "Profile Page",
+        showBackButton: false,
+      ),
       body: userStateValue.maybeWhen(
         loading: () => const Center(child: CircularProgressIndicator()),
         success: (user) {

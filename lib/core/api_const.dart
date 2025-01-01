@@ -3,7 +3,7 @@ class Api {
 
   static const String loginApi = 'api/auth/signin';
   static const String signUpUserApi = 'api/auth/signup';
-  static const String getUserByIdApi = '/api/user/676d621e9e8164aa7896d4d1';
+  static const String getUserByIdApi = 'api/user/676d75d66eb3602ef390756c';
 //>>>>>>>>
 //
 //

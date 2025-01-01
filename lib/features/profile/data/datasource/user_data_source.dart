@@ -14,13 +14,8 @@ class UserDataSourceImpl extends UserDataSource {
   @override
   Future<UserModel> getUser({String? token}) async {
     try {
-      Response response = await dioHttp.get(
-          url:
-              "https://762b-27-34-73-251.ngrok-free.app/api/user/676d621e9e8164aa7896d4d1",
-          token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmQ3NWQ2NmViMzYwMmVmMzkwNzU2YyIsImlhdCI6MTczNTc0MzYxMn0._VgLUZ1PP_dkfWWQ2iTxS_b3X5WDccKliWAAfYvIHuA"
-          // Api.baseUrl + Api.getUserByIdApi
-          );
+      Response response =
+          await dioHttp.get(url: Api.baseUrl + Api.getUserByIdApi);
       if (response.statusCode == 200 || response.statusCode == 201) {
         return UserModel.fromJson(response.data);
       } else {
