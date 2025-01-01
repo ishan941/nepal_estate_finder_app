@@ -23,7 +23,7 @@ class NefTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onChanged,
-    required FocusNode focusNode,
+    FocusNode? focusNode,
   }) : super(key: key);
 
   @override

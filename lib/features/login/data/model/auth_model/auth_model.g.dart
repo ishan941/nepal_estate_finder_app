@@ -20,6 +20,7 @@ _$AuthModelImpl _$$AuthModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['updatedAt'] as String),
       version: (json['__v'] as num?)?.toInt(),
+      accessToken: json['accessToken'] as String?,
     );
 
 Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
@@ -32,4 +33,5 @@ Map<String, dynamic> _$$AuthModelImplToJson(_$AuthModelImpl instance) =>
       'createdAt': instance.createdAt?.toIso8601String(),
       'updatedAt': instance.updatedAt?.toIso8601String(),
       '__v': instance.version,
+      'accessToken': instance.accessToken,
     };
