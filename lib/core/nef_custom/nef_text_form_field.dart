@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
+import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 
 class NefTextFormField extends StatelessWidget {
@@ -51,6 +52,78 @@ class NefTextFormField extends StatelessWidget {
             borderSide: const BorderSide(color: Colors.grey),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class NefSearchTextForm extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onSearchPressed;
+  final VoidCallback? onClearPressed;
+  final Widget? prefixIcon;
+
+  const NefSearchTextForm({
+    Key? key,
+    required this.controller,
+    this.hintText = 'Search...',
+    this.onChanged,
+    this.onSearchPressed,
+    this.onClearPressed,
+    this.prefixIcon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: NefSpacing.spacing11,
+      child: TextFormField(
+        // cursorColor: primaryColor,
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: Theme.of(context)
+              .textTheme
+              .subheadingRegular
+              ?.copyWith(color: ColorUtil.grey300),
+          contentPadding: const EdgeInsets.symmetric(
+              vertical: NefSpacing.spacing2, horizontal: NefSpacing.spacing4),
+          prefixIcon: prefixIcon,
+          suffixIcon: controller.text.isNotEmpty
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        controller.clear();
+                        if (onClearPressed != null) {
+                          onClearPressed!();
+                        }
+                      },
+                    ),
+                  ],
+                )
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(NefRadius.radius1),
+            borderSide: const BorderSide(
+                color: ColorUtil.grey300, style: BorderStyle.solid),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(NefRadius.radius1),
+            borderSide: const BorderSide(color: ColorUtil.grey300),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(NefRadius.radius1),
+            borderSide: const BorderSide(color: ColorUtil.grey300),
+          ),
+          filled: false,
+          fillColor: ColorUtil.whiteColor,
+        ),
+        onChanged: onChanged,
       ),
     );
   }

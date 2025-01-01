@@ -57,6 +57,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 text: "Sign In",
                 onPressed: _handleSignIn,
               ),
+              NefGradientElevatedButton(
+                  onPressed: () {}, label: "CONTINUE WITH GOOGLE"),
               if (authState is Loading) ...[
                 const SizedBox(height: NefSpacing.spacing2),
                 const CircularProgressIndicator(),
