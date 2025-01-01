@@ -30,6 +30,7 @@ mixin _$AuthModel {
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: '__v')
   int? get version => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +51,8 @@ abstract class $AuthModelCopyWith<$Res> {
       String? avatar,
       DateTime? createdAt,
       DateTime? updatedAt,
-      @JsonKey(name: '__v') int? version});
+      @JsonKey(name: '__v') int? version,
+      String? accessToken});
 }
 
 /// @nodoc
@@ -74,6 +76,7 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? version = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -108,6 +111,10 @@ class _$AuthModelCopyWithImpl<$Res, $Val extends AuthModel>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int?,
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -128,7 +135,8 @@ abstract class _$$AuthModelImplCopyWith<$Res>
       String? avatar,
       DateTime? createdAt,
       DateTime? updatedAt,
-      @JsonKey(name: '__v') int? version});
+      @JsonKey(name: '__v') int? version,
+      String? accessToken});
 }
 
 /// @nodoc
@@ -150,6 +158,7 @@ class __$$AuthModelImplCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
     Object? version = freezed,
+    Object? accessToken = freezed,
   }) {
     return _then(_$AuthModelImpl(
       id: freezed == id
@@ -184,6 +193,10 @@ class __$$AuthModelImplCopyWithImpl<$Res>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as int?,
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -199,7 +212,8 @@ class _$AuthModelImpl implements _AuthModel {
       this.avatar,
       this.createdAt,
       this.updatedAt,
-      @JsonKey(name: '__v') this.version});
+      @JsonKey(name: '__v') this.version,
+      this.accessToken});
 
   factory _$AuthModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthModelImplFromJson(json);
@@ -222,10 +236,12 @@ class _$AuthModelImpl implements _AuthModel {
   @override
   @JsonKey(name: '__v')
   final int? version;
+  @override
+  final String? accessToken;
 
   @override
   String toString() {
-    return 'AuthModel(id: $id, username: $username, email: $email, bio: $bio, avatar: $avatar, createdAt: $createdAt, updatedAt: $updatedAt, version: $version)';
+    return 'AuthModel(id: $id, username: $username, email: $email, bio: $bio, avatar: $avatar, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, accessToken: $accessToken)';
   }
 
   @override
@@ -243,13 +259,15 @@ class _$AuthModelImpl implements _AuthModel {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
-            (identical(other.version, version) || other.version == version));
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, username, email, bio, avatar,
-      createdAt, updatedAt, version);
+      createdAt, updatedAt, version, accessToken);
 
   @JsonKey(ignore: true)
   @override
@@ -274,7 +292,8 @@ abstract class _AuthModel implements AuthModel {
       final String? avatar,
       final DateTime? createdAt,
       final DateTime? updatedAt,
-      @JsonKey(name: '__v') final int? version}) = _$AuthModelImpl;
+      @JsonKey(name: '__v') final int? version,
+      final String? accessToken}) = _$AuthModelImpl;
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
       _$AuthModelImpl.fromJson;
@@ -297,6 +316,8 @@ abstract class _AuthModel implements AuthModel {
   @override
   @JsonKey(name: '__v')
   int? get version;
+  @override
+  String? get accessToken;
   @override
   @JsonKey(ignore: true)
   _$$AuthModelImplCopyWith<_$AuthModelImpl> get copyWith =>

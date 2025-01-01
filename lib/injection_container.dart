@@ -11,6 +11,11 @@ import 'package:provider_with_clean_architecture/features/login/data/repository_
 import 'package:provider_with_clean_architecture/features/login/domain/repository/auth_repository.dart';
 import 'package:provider_with_clean_architecture/features/login/domain/usecase/login_use_case.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
+import 'package:provider_with_clean_architecture/features/profile/data/datasource/user_data_source.dart';
+import 'package:provider_with_clean_architecture/features/profile/data/repository_impl/user_repository_impl.dart';
+import 'package:provider_with_clean_architecture/features/profile/domain/repository/user_repository.dart';
+import 'package:provider_with_clean_architecture/features/profile/domain/usecase/get_user_use_case.dart';
+import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
 import 'package:provider_with_clean_architecture/features/resturent/data/data%20source/resturent_datasource.dart';
 import 'package:provider_with_clean_architecture/features/resturent/data/repositoryImpl/resturent_repositoryimpl.dart';
 import 'package:provider_with_clean_architecture/features/resturent/domain/repository/resturent_repository.dart';
@@ -32,41 +37,81 @@ import 'package:provider_with_clean_architecture/features/user/presentation/prov
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
-
-Future<void> init() async {
-  // External
-  final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+//Enternal
+void registerExternal() async {
+  try {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    sl.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
+  } catch (e) {
+    throw Exception("Failed to initialize SharedPreferences: $e");
+  }
   sl.registerLazySingleton<Dio>(() => Dio());
   sl.registerLazySingleton<Connectivity>(() => Connectivity());
+}
 
-  // Core
+//core
+void registerCore() {
   sl.registerLazySingleton<DioHttp>(() => DioHttp(
         dio: sl(),
       ));
   sl.registerLazySingleton<SharedPref>(() => SharedPref(sp: sl()));
   sl.registerLazySingleton<TokenService>(() => TokenService(sharedPref: sl()));
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+}
 
-  //Data source
+//Data source
+void registerDataSource() {
   sl.registerLazySingleton<AuthDataSource>(
       () => AuthDataSourceImpl(dioHttp: sl()));
+  sl.registerLazySingleton<UserDataSource>(
+      () => UserDataSourceImpl(dioHttp: sl()));
+}
 
-  //Repository
-  sl.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(authDataSource: sl(), networkInfo: sl()));
-//GetUsecase
+// Repository
+void registerRepository() {
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
+        authDataSource: sl(),
+        networkInfo: sl(),
+      ));
 
-//Postusecase
+  sl.registerLazySingleton<UserRepository>(() => UserRepositoryImpl(
+        userDataSource: sl(),
+        networkInfo: sl(),
+        tService: sl(),
+      ));
+}
+
+// Usecase
+void registerUseCases() {
+  //GetuseCase
+  sl.registerLazySingleton<GetUserUseCase>(
+      () => GetUserUseCase(userRepository: sl()));
+
+  //Post usecase
   sl.registerLazySingleton<LoginUseCase>(
       () => LoginUseCase(authRepository: sl()));
   sl.registerLazySingleton<SignUpUserUseCase>(
       () => SignUpUserUseCase(authRepository: sl()));
-//Notifier
+}
+
+// Notifier
+void registerNotifier() {
   sl.registerFactory(() => AuthNotifier(
         loginUseCase: sl(),
         signUpUserUseCase: sl(),
+        sharedPref: sl(),
       ));
+  sl.registerFactory(() => UserNotifier(getUserUseCase: sl()));
+}
+
+Future<void> init() async {
+  registerExternal();
+  registerCore();
+  registerDataSource();
+  registerRepository();
+  registerUseCases();
+
+  registerNotifier();
 
 //>>>>>>
 //

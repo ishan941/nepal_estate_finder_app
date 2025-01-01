@@ -23,7 +23,7 @@ class NefTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onChanged,
-    required FocusNode focusNode,
+    FocusNode? focusNode,
   }) : super(key: key);
 
   @override
@@ -87,7 +87,7 @@ class NefSearchTextForm extends StatelessWidget {
           hintStyle: Theme.of(context)
               .textTheme
               .subheadingRegular
-              ?.copyWith(color: ColorUtil.grey300),
+              ?.copyWith(color: grey300),
           contentPadding: const EdgeInsets.symmetric(
               vertical: NefSpacing.spacing2, horizontal: NefSpacing.spacing4),
           prefixIcon: prefixIcon,
@@ -109,19 +109,19 @@ class NefSearchTextForm extends StatelessWidget {
               : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(NefRadius.radius1),
-            borderSide: const BorderSide(
-                color: ColorUtil.grey300, style: BorderStyle.solid),
+            borderSide:
+                const BorderSide(color: grey300, style: BorderStyle.solid),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(NefRadius.radius1),
-            borderSide: const BorderSide(color: ColorUtil.grey300),
+            borderSide: const BorderSide(color: grey300),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(NefRadius.radius1),
-            borderSide: const BorderSide(color: ColorUtil.grey300),
+            borderSide: const BorderSide(color: grey300),
           ),
           filled: false,
-          fillColor: ColorUtil.whiteColor,
+          fillColor: whiteColor,
         ),
         onChanged: onChanged,
       ),

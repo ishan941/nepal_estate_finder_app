@@ -32,8 +32,8 @@ class NefAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: Text(title, style: const TextStyle(color: ColorUtil.whiteColor)),
-      backgroundColor: ColorUtil.primaryColor,
+      title: Text(title, style: const TextStyle(color: whiteColor)),
+      backgroundColor: primaryColor,
       automaticallyImplyLeading: false,
       leading: showBackButton
           ? IconButton(
@@ -83,7 +83,7 @@ class NefAppBar extends StatelessWidget implements PreferredSizeWidget {
                       child: Center(
                         child: NefTextUtil(
                           text: "$count",
-                          textColor: ColorUtil.whiteColor,
+                          textColor: whiteColor,
                           fontSize: 8,
                         ),
                       ),

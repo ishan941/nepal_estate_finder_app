@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
-import 'package:provider_with_clean_architecture/features/profile/profile_page.dart';
+import 'package:provider_with_clean_architecture/features/profile/presentation/pages/profile_page.dart';
 
 class NefNavBar extends ConsumerStatefulWidget {
   final int selectedIndex;
@@ -82,21 +82,21 @@ class _NefNavBarState extends ConsumerState<NefNavBar> {
             ),
           ],
           currentIndex: _selectedIndex,
-          backgroundColor: ColorUtil.whiteColor,
+          backgroundColor: whiteColor,
           unselectedIconTheme: const IconThemeData(size: 20),
           selectedIconTheme: const IconThemeData(size: 20),
           elevation: 5,
-          unselectedItemColor: ColorUtil.greyColor.withOpacity(0.5),
+          unselectedItemColor: greyColor.withOpacity(0.5),
           unselectedLabelStyle: TextStyle(
-            color: ColorUtil.greyColor.withOpacity(0.5),
+            color: greyColor.withOpacity(0.5),
             fontSize: 14,
           ),
-          selectedItemColor: ColorUtil.primaryColor,
+          selectedItemColor: primaryColor,
           showUnselectedLabels: true,
           selectedFontSize: 10,
           unselectedFontSize: 10,
           selectedLabelStyle: const TextStyle(
-            color: ColorUtil.primaryColor,
+            color: primaryColor,
             fontSize: 14,
           ),
           onTap: _onItemTapped,
