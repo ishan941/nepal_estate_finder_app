@@ -3,6 +3,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Add Riverpod import
+import 'package:provider_with_clean_architecture/core/nef_custom/nef_nav_bar.dart';
 import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
 import 'package:provider_with_clean_architecture/firebase_options.dart';
@@ -62,7 +63,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: const homePage(),
+      home: NefNavBar(),
     );
   }
 }
