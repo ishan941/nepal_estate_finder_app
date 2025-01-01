@@ -7,6 +7,7 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.
 import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
+import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
 import 'package:provider_with_clean_architecture/features/login/data/model/auth_state/auth_state.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/pages/sign_up_page.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
@@ -101,7 +102,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       InfoHelper.showSuccessToast(context, "successfully login");
       Navigator.pushAndRemoveUntil(
           context,
-          (MaterialPageRoute(builder: (context) => const SignUpPage())),
+          (MaterialPageRoute(builder: (context) => const homePage())),
           (Route<dynamic> route) => false);
     } else if (authState is Error) {
       InfoHelper.showSuccessToast(context, "Failed login");

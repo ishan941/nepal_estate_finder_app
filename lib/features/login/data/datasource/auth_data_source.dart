@@ -32,7 +32,7 @@ class AuthDataSourceImpl implements AuthDataSource {
       String username, String email, String password) async {
     final Response response = await dioHttp.post(
       url: Api.baseUrl + Api.signUpUserApi,
-      data: {'usernmae': username, 'email': email, 'password': password},
+      data: {'username': username, 'email': email, 'password': password},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response.data;
