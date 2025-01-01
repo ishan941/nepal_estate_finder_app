@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
+import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 
 class NefElevatedButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class NefElevatedButton extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             foregroundColor: Colors.white,
-            backgroundColor: backgroundColor ?? Colors.indigoAccent.shade700,
+            backgroundColor: backgroundColor ?? primaryColor,
             elevation: 5,
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             shape: RoundedRectangleBorder(
