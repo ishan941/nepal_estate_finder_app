@@ -13,6 +13,30 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Map<String, dynamic>> login(String email, String password) async {
-    return authDataSource.login(email, password);
+    if (!await networkInfo.isConnected) {
+      throw Exception('No Internet Connection');
+    }
+    try {
+      return await authDataSource.login(email, password);
+    } catch (e) {
+      // Log the error and rethrow it or wrap it in a custom exception
+      print("Error in login: $e");
+      throw Exception('Failed to log in. Please try again later.');
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> signUpUser(
+      String username, String email, String password) async {
+    if (!await networkInfo.isConnected) {
+      throw Exception('No Internet Connection');
+    }
+    try {
+      return await authDataSource.signUpUser(username, email, password);
+    } catch (e) {
+      // Log the error and rethrow it or wrap it in a custom exception
+      print("Error in sign-up: $e");
+      throw Exception('Failed to sign up. Please try again later.');
+    }
   }
 }
