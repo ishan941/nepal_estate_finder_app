@@ -2,9 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart'; // Add Riverpod import
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_nav_bar.dart';
-import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
+import 'package:provider_with_clean_architecture/features/login/data/model/hive/user.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
 import 'package:provider_with_clean_architecture/firebase_options.dart';
 
@@ -13,6 +14,9 @@ import 'injection_container.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(UserAdapter());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -63,7 +67,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: NefNavBar(),
+      home: LoginPage(),
     );
   }
 }

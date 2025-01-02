@@ -9,6 +9,7 @@ import 'package:provider_with_clean_architecture/core/utils/shared_preference.da
 import 'package:provider_with_clean_architecture/features/login/data/datasource/auth_data_source.dart';
 import 'package:provider_with_clean_architecture/features/login/data/repository_impl/auth_repository_impl.dart';
 import 'package:provider_with_clean_architecture/features/login/domain/repository/auth_repository.dart';
+import 'package:provider_with_clean_architecture/features/login/domain/service/user_hive_service.dart';
 import 'package:provider_with_clean_architecture/features/login/domain/usecase/login_use_case.dart';
 import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/datasource/user_data_source.dart';
@@ -61,8 +62,10 @@ void registerCore() {
 
 //Data source
 void registerDataSource() {
+  sl.registerLazySingleton<UserHiveService>(() => UserHiveService());
+
   sl.registerLazySingleton<AuthDataSource>(
-      () => AuthDataSourceImpl(dioHttp: sl()));
+      () => AuthDataSourceImpl(dioHttp: sl(), userHiveService: sl()));
   sl.registerLazySingleton<UserDataSource>(
       () => UserDataSourceImpl(dioHttp: sl()));
 }

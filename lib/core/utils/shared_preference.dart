@@ -2,6 +2,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String accessTokenKey = "access_token";
 const String refreshTokenKey = "refresh_token";
+const String userIdKey = "user_id";
+const String userNameKey = "user_name";
+const String userEmailKey = "user_email";
+const String userProfileKey = "user_profile";
+const String userBioKey = "userBio";
 
 class SharedPref {
   final SharedPreferences sp;

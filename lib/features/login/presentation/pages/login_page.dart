@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_elevated_button.dart';
+import 'package:provider_with_clean_architecture/core/nef_custom/nef_nav_bar.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
@@ -104,7 +105,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       InfoHelper.showSuccessToast(context, "successfully login");
       Navigator.pushAndRemoveUntil(
           context,
-          (MaterialPageRoute(builder: (context) => const HomePage())),
+          (MaterialPageRoute(builder: (context) => const NefNavBar())),
           (Route<dynamic> route) => false);
     } else if (authState is Error) {
       InfoHelper.showSuccessToast(context, "Failed login");
