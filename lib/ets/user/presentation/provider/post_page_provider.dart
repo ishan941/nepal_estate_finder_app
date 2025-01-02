@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/error_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/data/model/post_model.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/domain/usecase/post_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/user/data/model/post_model.dart';
+import 'package:provider_with_clean_architecture/ets/user/domain/usecase/post_usecase.dart';
 
 class PostPageProvider extends ChangeNotifier {
   String? tableName, floor;

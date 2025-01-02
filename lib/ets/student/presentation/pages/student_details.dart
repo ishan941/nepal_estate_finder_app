@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_with_clean_architecture/core/utils/loader.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/presentation/provider/student_provider.dart';
+import 'package:provider_with_clean_architecture/ets/student/presentation/provider/student_provider.dart';
 
 class StudentDetails extends StatefulWidget {
   const StudentDetails({super.key});

@@ -5,9 +5,9 @@ import 'package:provider_with_clean_architecture/core/networkinfo/network_info.d
 import 'package:provider_with_clean_architecture/core/token_service/repository/base_repository.dart';
 import 'package:provider_with_clean_architecture/core/token_service/services/token_service.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/datasource/user_data_source.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/model/user_model.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/domain/repository/user_repository.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/datasource/user_data_source.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/model/user_model.dart';
+import 'package:provider_with_clean_architecture/ets/profile/domain/repository/user_repository.dart';
 
 class UserRepositoryImpl extends BaseRepository implements UserRepository {
   NetworkInfo networkInfo;

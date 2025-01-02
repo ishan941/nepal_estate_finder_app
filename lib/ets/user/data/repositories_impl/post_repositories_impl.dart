@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/networkinfo/network_info.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/data/data%20source/resturent_datasource.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/repository/resturent_repository.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/data/datasource/post_source.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/domain/repositories/user_repositories.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/data/data%20source/resturent_datasource.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/repository/resturent_repository.dart';
+import 'package:provider_with_clean_architecture/ets/user/data/datasource/post_source.dart';
+import 'package:provider_with_clean_architecture/ets/user/domain/repositories/user_repositories.dart';
 
 class PostRepositoriesImpl extends PostRepositories {
   final PostDataSource postDataSource;

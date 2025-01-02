@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/model/user_model.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/model/user_model.dart';
 
-import 'package:provider_with_clean_architecture/features/ets/profile/domain/repository/user_repository.dart';
+import 'package:provider_with_clean_architecture/ets/profile/domain/repository/user_repository.dart';
 
 class GetUserUseCase extends UseCase<UserModel, NoParams> {
   final UserRepository userRepository;

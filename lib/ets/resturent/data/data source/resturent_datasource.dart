@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:provider_with_clean_architecture/core/api_const.dart';
 import 'package:provider_with_clean_architecture/core/error/exception_error.dart';
 import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/data/model/resturent_model.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/data/model/resturent_model.dart';
 
 abstract class ResturentDataSource {
   Future<bool> saveResturent({

@@ -4,10 +4,10 @@ import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/loader.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/presentation/provider/student_provider.dart';
-import 'package:provider_with_clean_architecture/features/ets/as/shared/custom_button.dart';
-import 'package:provider_with_clean_architecture/features/ets/as/shared/custom_form.dart';
-import 'package:provider_with_clean_architecture/features/ets/as/shared/custom_text.dart';
+import 'package:provider_with_clean_architecture/ets/student/presentation/provider/student_provider.dart';
+import 'package:provider_with_clean_architecture/ets/as/shared/custom_button.dart';
+import 'package:provider_with_clean_architecture/ets/as/shared/custom_form.dart';
+import 'package:provider_with_clean_architecture/ets/as/shared/custom_text.dart';
 
 class StudentForm extends StatelessWidget {
   StudentForm({super.key});

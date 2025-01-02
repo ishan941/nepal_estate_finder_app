@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/loader.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/entities/resturent_entities.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/presentation/pages/resturent_table.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/presentation/provider/resturent_provider.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/entities/resturent_entities.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/presentation/pages/resturent_table.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/presentation/provider/resturent_provider.dart';
 
 class CreateMenu extends StatefulWidget {
   final ResturentResponseEntity? resturentResponseEntity;

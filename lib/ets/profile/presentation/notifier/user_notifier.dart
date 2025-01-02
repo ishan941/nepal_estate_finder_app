@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/model/user_model.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/state/user_state.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/domain/usecase/get_user_use_case.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/model/user_model.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/state/user_state.dart';
+import 'package:provider_with_clean_architecture/ets/profile/domain/usecase/get_user_use_case.dart';
 import 'package:provider_with_clean_architecture/injection_container.dart';
 
 class UserNotifier extends StateNotifier<UserState> {

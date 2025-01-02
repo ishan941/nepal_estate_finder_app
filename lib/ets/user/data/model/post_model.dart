@@ -1,4 +1,4 @@
-import 'package:provider_with_clean_architecture/features/ets/user/domain/entities/post_entity.dart';
+import 'package:provider_with_clean_architecture/ets/user/domain/entities/post_entity.dart';
 
 class PostModel extends PostResponseEntity {
   String? restaurantId;

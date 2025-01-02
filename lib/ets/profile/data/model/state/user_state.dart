@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/model/user_model.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/model/user_model.dart';
 
 part 'user_state.freezed.dart';
 

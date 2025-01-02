@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/entities/student_response_entity.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/entities/student_response_entity.dart';
 
 abstract class StudentRepository {
   Future<Either<Failure, bool>> saveStudent({required Map queryData});

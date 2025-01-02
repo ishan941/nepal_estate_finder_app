@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider_with_clean_architecture/features/ets/paypal/paypal_payment.dart';
+import 'package:provider_with_clean_architecture/ets/paypal/paypal_payment.dart';
 
 class MakePayment extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/entities/student_response_entity.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/entities/student_response_entity.dart';
 
 StudentModel studentResponseModelFromJson(String str) =>
     StudentModel.fromJson(json.decode(str));

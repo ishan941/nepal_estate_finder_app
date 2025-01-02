@@ -4,10 +4,10 @@ import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/error_helper.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/data/model/student_model.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/entities/student_response_entity.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/usecase/get_student_usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/usecase/student_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/student/data/model/student_model.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/entities/student_response_entity.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/usecase/get_student_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/usecase/student_usecase.dart';
 
 class StudentProvider extends ChangeNotifier {
   StatusUtil _saveStudentStatus = StatusUtil.none,

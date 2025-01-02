@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/domain/repositories/user_repositories.dart';
+import 'package:provider_with_clean_architecture/ets/user/domain/repositories/user_repositories.dart';
 
 class PostUseCase implements UseCase<bool, PostParams> {
   final PostRepositories postRepositories;

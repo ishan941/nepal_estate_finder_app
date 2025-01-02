@@ -4,12 +4,12 @@ import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/error_helper.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/data/model/resturent_model.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/entities/resturent_entities.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/use_cases/add_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/use_cases/delete_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/use_cases/edit_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/use_cases/get_resturent_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/data/model/resturent_model.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/entities/resturent_entities.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/add_resturent_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/delete_resturent_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/edit_resturent_usecase.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/get_resturent_usecase.dart';
 
 class ResturentProvider extends ChangeNotifier {
   final ResturentUseCase resturentUseCase;

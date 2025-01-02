@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/repository/resturent_repository.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/repository/resturent_repository.dart';
 
 class ResturentUseCase implements UseCase<bool, ResturentParams> {
   final ResturentRepository resturentRepository;

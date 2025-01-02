@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider_with_clean_architecture/features/ets/paypal/paypal_service.dart';
+import 'package:provider_with_clean_architecture/ets/paypal/paypal_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PaypalPayment extends StatefulWidget {

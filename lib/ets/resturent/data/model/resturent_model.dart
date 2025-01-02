@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:provider_with_clean_architecture/features/ets/resturent/domain/entities/resturent_entities.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/domain/entities/resturent_entities.dart';
 
 ResturentModel resturentResponseModelFromJson(dynamic json) =>
     ResturentModel.fromJson(json.decode(json));

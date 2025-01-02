@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/usecase/error_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/menu/data/model/menu_model.dart';
+import 'package:provider_with_clean_architecture/ets/menu/data/model/menu_model.dart';
 
 class MenuProvider extends ChangeNotifier {
   String? name, category, description, photo;

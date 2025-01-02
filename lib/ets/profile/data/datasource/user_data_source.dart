@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:provider_with_clean_architecture/core/api_const.dart';
 import 'package:provider_with_clean_architecture/core/error/exception_error.dart';
 import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
-import 'package:provider_with_clean_architecture/features/ets/profile/data/model/model/user_model.dart';
+import 'package:provider_with_clean_architecture/ets/profile/data/model/model/user_model.dart';
 
 abstract class UserDataSource {
   Future<UserModel> getUser({String? token});

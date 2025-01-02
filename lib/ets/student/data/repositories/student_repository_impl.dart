@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
 import 'package:provider_with_clean_architecture/core/networkinfo/network_info.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/data/datasource/student_datasource.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/entities/student_response_entity.dart';
-import 'package:provider_with_clean_architecture/features/ets/student/domain/repositories/student_repository.dart';
+import 'package:provider_with_clean_architecture/ets/student/data/datasource/student_datasource.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/entities/student_response_entity.dart';
+import 'package:provider_with_clean_architecture/ets/student/domain/repositories/student_repository.dart';
 
 class StudentRepositoryImpl extends StudentRepository {
   final StudentDataSource studentDataSource;

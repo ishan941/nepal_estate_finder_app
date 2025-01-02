@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/as/shared/custom_button.dart';
-import 'package:provider_with_clean_architecture/features/ets/as/shared/custom_form.dart';
-import 'package:provider_with_clean_architecture/features/ets/user/presentation/provider/post_page_provider.dart';
+import 'package:provider_with_clean_architecture/ets/as/shared/custom_button.dart';
+import 'package:provider_with_clean_architecture/ets/as/shared/custom_form.dart';
+import 'package:provider_with_clean_architecture/ets/user/presentation/provider/post_page_provider.dart';
 
 class PostPage extends StatefulWidget {
   PostPage({super.key});

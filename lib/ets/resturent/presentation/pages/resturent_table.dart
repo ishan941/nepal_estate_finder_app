@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_with_clean_architecture/core/utils/loader.dart';
 import 'package:provider_with_clean_architecture/core/utils/status_util.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/presentation/pages/resturent_form.dart';
-import 'package:provider_with_clean_architecture/features/ets/resturent/presentation/provider/resturent_provider.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/presentation/pages/resturent_form.dart';
+import 'package:provider_with_clean_architecture/ets/resturent/presentation/provider/resturent_provider.dart';
 
 class ResturentTable extends StatefulWidget {
   const ResturentTable({super.key});
