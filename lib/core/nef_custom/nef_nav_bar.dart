@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
-import 'package:provider_with_clean_architecture/features/profile/presentation/pages/profile_page.dart';
+import 'package:provider_with_clean_architecture/ets/profile/presentation/pages/profile_page.dart';
 
 class NefNavBar extends ConsumerStatefulWidget {
   final int selectedIndex;
@@ -59,12 +59,12 @@ class _NefNavBarState extends ConsumerState<NefNavBar> {
               label: "homeStr",
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.view_timeline_outlined),
-              label: "meritPointStr",
+              icon: Icon(Icons.create_outlined),
+              label: "create",
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today_outlined),
-              label: "calenderStr",
+              icon: Icon(Icons.show_chart),
+              label: "show",
             ),
             BottomNavigationBarItem(
               icon: ClipRRect(

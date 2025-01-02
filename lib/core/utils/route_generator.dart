@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider_with_clean_architecture/core/utils/route_constants.dart';
-import 'package:provider_with_clean_architecture/features/student/presentation/pages/student_form.dart';
+import 'package:provider_with_clean_architecture/ets/student/presentation/pages/student_form.dart';
 
 class RouteGenerator {
   static navigateToPage(BuildContext context, String route,
