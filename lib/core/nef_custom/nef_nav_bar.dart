@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
-import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
+import 'package:provider_with_clean_architecture/features/CreateListings/create_listing.dart';
+import 'package:provider_with_clean_architecture/features/HomePage/home_page.dart';
 import 'package:provider_with_clean_architecture/ets/profile/presentation/pages/profile_page.dart';
 
 class NefNavBar extends ConsumerStatefulWidget {
@@ -19,7 +20,7 @@ class _NefNavBarState extends ConsumerState<NefNavBar> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    HomePage(),
+    CreateListing(),
     HomePage(),
     ProfilePage(),
   ];
