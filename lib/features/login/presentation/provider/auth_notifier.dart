@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/utils/shared_preference.dart';
 import 'package:provider_with_clean_architecture/features/login/data/model/auth_model/auth_model.dart';
 import 'package:provider_with_clean_architecture/features/login/data/model/auth_state/auth_state.dart';
+import 'package:provider_with_clean_architecture/features/login/domain/service/user_hive_service.dart';
 import 'package:provider_with_clean_architecture/features/login/domain/usecase/login_use_case.dart';
 import 'package:provider_with_clean_architecture/injection_container.dart';
 
@@ -47,9 +48,23 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  void logout() {
-    state = const AuthState.unauthenticated();
+  Future<void> fetchUser() async {
+    final userHiveService = UserHiveService();
+    final user = await userHiveService.getUserFromHive();
+    if (user != null) {
+      print('User: ${user.username}, Email: ${user.email}');
+    } else {
+      print('No user data found in Hive.');
+    }
   }
+
+  Future<void> logout() async {
+    final userHiveService = UserHiveService();
+    await userHiveService.clearUserData();
+    print('User data cleared from Hive.');
+  }
+
+  void saveUserData() {}
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>(

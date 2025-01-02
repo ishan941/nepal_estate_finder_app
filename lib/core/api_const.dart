@@ -1,5 +1,6 @@
 class Api {
-  static const String baseUrl = "https://762b-27-34-73-251.ngrok-free.app/";
+  // static const String baseUrl = "https://61b8-27-34-73-209.ngrok-free.app/";
+  static const String baseUrl = "http://localhost:3000/";
 
   static const String loginApi = 'api/auth/signin';
   static const String signUpUserApi = 'api/auth/signup';

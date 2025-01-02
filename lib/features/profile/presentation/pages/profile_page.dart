@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider_with_clean_architecture/core/nef_custom/nef_app_bar.dart';
-import 'package:provider_with_clean_architecture/core/nef_custom/nef_elevated_button.dart';
-import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
-import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
-import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
-import 'package:provider_with_clean_architecture/features/profile/data/model/model/user_model.dart';
-import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
+import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
+import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
+
+import 'package:provider_with_clean_architecture/features/login/presentation/provider/user_notifier.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -16,109 +13,68 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _usernameController = TextEditingController();
-  final _bioController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () async {
-      fetchUserData();
+      await ref.read(userProvider.notifier).fetchUserData();
     });
-  }
-
-  void fetchUserData() {
-    ref.read(userState.notifier).getUserData();
-  }
-
-  void populateFields(UserModel user) {
-    _usernameController.text = user.username;
-    _emailController.text = user.email;
-    _bioController.text = user.bio;
   }
 
   @override
   Widget build(BuildContext context) {
-    final userStateValue = ref.read(userState);
+    final user = ref.watch(userProvider);
 
     return Scaffold(
-      appBar: NefAppBar(
-        title: "Profile Page",
-        showBackButton: false,
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        title: const Text('Profile Page'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  (MaterialPageRoute(builder: (context) => const LoginPage())),
+                  (Route<dynamic> route) => false);
+              await ref.read(userProvider.notifier).clearUserData();
+            },
+          ),
+        ],
       ),
-      body: userStateValue.maybeWhen(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        success: (user) {
-          if (user != null) populateFields(user);
-          return _buildProfileForm();
-        },
-        error: (error) => Center(child: Text(error ?? "Unknown Error")),
-        orElse: () => _buildProfileForm(),
-      ),
-    );
-  }
-
-  Widget _buildProfileForm() {
-    return SingleChildScrollView(
-      child: NefPadding(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: ClipOval(
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Image.asset(
-                    "assets/images/avatar.jpg",
-                    fit: BoxFit.cover,
+      body: user == null
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: ClipOval(
+                      child: SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: user.avatar.isNotEmpty
+                            ? Image.network(
+                                user.avatar,
+                                fit: BoxFit.cover,
+                              )
+                            : const Icon(Icons.account_circle, size: 100),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 16),
+                  Text("${user.username}"),
+                  Text("${user.email}"),
+                  Text("Bio: ${user.bio}"),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Edit Profile"),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: NefSpacing.spacing4),
-            const Text("Username"),
-            const SizedBox(height: NefSpacing.spacing2),
-            NefTextFormField(
-              controller: _usernameController,
-            ),
-            const Text("Email"),
-            const SizedBox(height: NefSpacing.spacing2),
-            NefTextFormField(
-              controller: _emailController,
-            ),
-            const Text("Bio"),
-            const SizedBox(height: NefSpacing.spacing2),
-            NefTextFormField(
-              controller: _bioController,
-            ),
-            const Text("Password"),
-            const SizedBox(height: NefSpacing.spacing2),
-            NefTextFormField(
-              controller: _passwordController,
-              obscureText: true,
-            ),
-            NefElevatedButton(
-              backgroundColor: Colors.blue.shade700,
-              text: "Submit",
-              onPressed: () {
-                // Handle submit
-              },
-            ),
-          ],
-        ),
-      ),
     );
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _usernameController.dispose();
-    _bioController.dispose();
-    super.dispose();
   }
 }
