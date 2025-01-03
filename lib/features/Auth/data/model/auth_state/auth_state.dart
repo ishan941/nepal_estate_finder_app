@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/auth_model/auth_model.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/auth_model/auth_model.dart';
 part 'auth_state.freezed.dart';
 
 @freezed

@@ -12,6 +12,7 @@ class NefTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
+  final String? initialValue;
 
   const NefTextFormField({
     Key? key,
@@ -23,7 +24,9 @@ class NefTextFormField extends StatelessWidget {
     this.controller,
     this.validator,
     this.onChanged,
+    this.initialValue,
     FocusNode? focusNode,
+    InputDecoration? decoration,
   }) : super(key: key);
 
   @override
@@ -36,6 +39,7 @@ class NefTextFormField extends StatelessWidget {
         keyboardType: keyboardType,
         onChanged: onChanged,
         validator: validator,
+        initialValue: initialValue,
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,

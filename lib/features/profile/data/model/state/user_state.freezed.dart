@@ -20,24 +20,24 @@ mixin _$UserState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(UserModel? user) success,
-    required TResult Function(String? error) error,
+    required TResult Function(UserModel user) success,
+    required TResult Function(String? errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(UserModel? user)? success,
-    TResult? Function(String? error)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String? errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(UserModel? user)? success,
-    TResult Function(String? error)? error,
+    TResult Function(UserModel user)? success,
+    TResult Function(String? errorMessage)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,8 +124,8 @@ class _$IdleImpl implements _Idle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(UserModel? user) success,
-    required TResult Function(String? error) error,
+    required TResult Function(UserModel user) success,
+    required TResult Function(String? errorMessage) error,
   }) {
     return idle();
   }
@@ -135,8 +135,8 @@ class _$IdleImpl implements _Idle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(UserModel? user)? success,
-    TResult? Function(String? error)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String? errorMessage)? error,
   }) {
     return idle?.call();
   }
@@ -146,8 +146,8 @@ class _$IdleImpl implements _Idle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(UserModel? user)? success,
-    TResult Function(String? error)? error,
+    TResult Function(UserModel user)? success,
+    TResult Function(String? errorMessage)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -238,8 +238,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(UserModel? user) success,
-    required TResult Function(String? error) error,
+    required TResult Function(UserModel user) success,
+    required TResult Function(String? errorMessage) error,
   }) {
     return loading();
   }
@@ -249,8 +249,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(UserModel? user)? success,
-    TResult? Function(String? error)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String? errorMessage)? error,
   }) {
     return loading?.call();
   }
@@ -260,8 +260,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(UserModel? user)? success,
-    TResult Function(String? error)? error,
+    TResult Function(UserModel user)? success,
+    TResult Function(String? errorMessage)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -318,9 +318,9 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel? user});
+  $Res call({UserModel user});
 
-  $UserModelCopyWith<$Res>? get user;
+  $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -334,24 +334,20 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
+    Object? user = null,
   }) {
     return _then(_$SuccessImpl(
-      freezed == user
+      null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+              as UserModel,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -363,7 +359,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.user);
 
   @override
-  final UserModel? user;
+  final UserModel user;
 
   @override
   String toString() {
@@ -392,8 +388,8 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(UserModel? user) success,
-    required TResult Function(String? error) error,
+    required TResult Function(UserModel user) success,
+    required TResult Function(String? errorMessage) error,
   }) {
     return success(user);
   }
@@ -403,8 +399,8 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(UserModel? user)? success,
-    TResult? Function(String? error)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String? errorMessage)? error,
   }) {
     return success?.call(user);
   }
@@ -414,8 +410,8 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(UserModel? user)? success,
-    TResult Function(String? error)? error,
+    TResult Function(UserModel user)? success,
+    TResult Function(String? errorMessage)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -463,9 +459,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements UserState {
-  const factory _Success(final UserModel? user) = _$SuccessImpl;
+  const factory _Success(final UserModel user) = _$SuccessImpl;
 
-  UserModel? get user;
+  UserModel get user;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -477,7 +473,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? error});
+  $Res call({String? errorMessage});
 }
 
 /// @nodoc
@@ -491,12 +487,12 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ErrorImpl(
-      freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
+      freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -505,14 +501,14 @@ class __$$ErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.error);
+  const _$ErrorImpl(this.errorMessage);
 
   @override
-  final String? error;
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'UserState.error(error: $error)';
+    return 'UserState.error(errorMessage: $errorMessage)';
   }
 
   @override
@@ -520,11 +516,12 @@ class _$ErrorImpl implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
+  int get hashCode => Object.hash(runtimeType, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -537,10 +534,10 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(UserModel? user) success,
-    required TResult Function(String? error) error,
+    required TResult Function(UserModel user) success,
+    required TResult Function(String? errorMessage) error,
   }) {
-    return error(this.error);
+    return error(errorMessage);
   }
 
   @override
@@ -548,10 +545,10 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(UserModel? user)? success,
-    TResult? Function(String? error)? error,
+    TResult? Function(UserModel user)? success,
+    TResult? Function(String? errorMessage)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(errorMessage);
   }
 
   @override
@@ -559,12 +556,12 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(UserModel? user)? success,
-    TResult Function(String? error)? error,
+    TResult Function(UserModel user)? success,
+    TResult Function(String? errorMessage)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(errorMessage);
     }
     return orElse();
   }
@@ -608,9 +605,9 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements UserState {
-  const factory _Error(final String? error) = _$ErrorImpl;
+  const factory _Error(final String? errorMessage) = _$ErrorImpl;
 
-  String? get error;
+  String? get errorMessage;
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;

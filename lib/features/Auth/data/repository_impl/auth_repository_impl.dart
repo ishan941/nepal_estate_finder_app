@@ -1,6 +1,6 @@
 import 'package:provider_with_clean_architecture/core/networkinfo/network_info.dart';
-import 'package:provider_with_clean_architecture/features/login/data/datasource/auth_data_source.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/repository/auth_repository.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/datasource/auth_data_source.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthDataSource authDataSource;

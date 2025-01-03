@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/utils/shared_preference.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/auth_model/auth_model.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/auth_state/auth_state.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/service/user_hive_service.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/usecase/login_use_case.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/auth_model/auth_model.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/auth_state/auth_state.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/service/user_hive_service.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/usecase/login_use_case.dart';
 import 'package:provider_with_clean_architecture/injection_container.dart';
 
 class AuthNotifier extends StateNotifier<AuthState> {
@@ -28,6 +28,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
       final userData = await loginUseCase.execute(email, password);
       final user = AuthModel.fromJson(userData);
       await sharedPref.saveDataToPreference(accessTokenKey, user.accessToken);
+      await sharedPref.saveDataToPreference(userIdKey, user.id); // Save userId
 
       state = AuthState.authenticated(user);
     } catch (e) {
@@ -63,8 +64,6 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await userHiveService.clearUserData();
     print('User data cleared from Hive.');
   }
-
-  void saveUserData() {}
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>(

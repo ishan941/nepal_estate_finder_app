@@ -4,7 +4,7 @@ import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/features/CreateListings/create_listing.dart';
 import 'package:provider_with_clean_architecture/features/HomePage/home_page.dart';
-import 'package:provider_with_clean_architecture/ets/profile/presentation/pages/profile_page.dart';
+import 'package:provider_with_clean_architecture/features/profile/presentation/pages/profile_page.dart';
 
 class NefNavBar extends ConsumerStatefulWidget {
   final int selectedIndex;

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/auth_model/auth_model.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/hive/user.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/auth_model/auth_model.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/hive/user.dart';
 
 class UserHiveService {
   static const String userBoxName = 'userBox';
