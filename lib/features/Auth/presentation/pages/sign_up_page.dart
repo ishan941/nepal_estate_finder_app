@@ -5,8 +5,8 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dar
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/pages/login_page.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
+import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/auth_notifier.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
   const SignUpPage({super.key});

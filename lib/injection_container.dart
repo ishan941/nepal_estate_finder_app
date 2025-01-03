@@ -6,17 +6,17 @@ import 'package:provider_with_clean_architecture/core/networkinfo/network_info.d
 import 'package:provider_with_clean_architecture/core/token_service/services/token_service.dart';
 import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
 import 'package:provider_with_clean_architecture/core/utils/shared_preference.dart';
-import 'package:provider_with_clean_architecture/features/login/data/datasource/auth_data_source.dart';
-import 'package:provider_with_clean_architecture/features/login/data/repository_impl/auth_repository_impl.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/repository/auth_repository.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/service/user_hive_service.dart';
-import 'package:provider_with_clean_architecture/features/login/domain/usecase/login_use_case.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
-import 'package:provider_with_clean_architecture/ets/profile/data/datasource/user_data_source.dart';
-import 'package:provider_with_clean_architecture/ets/profile/data/repository_impl/user_repository_impl.dart';
-import 'package:provider_with_clean_architecture/ets/profile/domain/repository/user_repository.dart';
-import 'package:provider_with_clean_architecture/ets/profile/domain/usecase/get_user_use_case.dart';
-import 'package:provider_with_clean_architecture/ets/profile/presentation/notifier/user_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/datasource/auth_data_source.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/repository_impl/auth_repository_impl.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/repository/auth_repository.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/service/user_hive_service.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/usecase/login_use_case.dart';
+import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/auth_notifier.dart';
+import 'package:provider_with_clean_architecture/features/profile/data/datasource/user_data_source.dart';
+import 'package:provider_with_clean_architecture/features/profile/data/repository_impl/user_repository_impl.dart';
+import 'package:provider_with_clean_architecture/features/profile/domain/repository/user_repository.dart';
+import 'package:provider_with_clean_architecture/features/profile/domain/usecase/get_user_use_case.dart';
+import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
 import 'package:provider_with_clean_architecture/ets/resturent/data/data%20source/resturent_datasource.dart';
 import 'package:provider_with_clean_architecture/ets/resturent/data/repositoryImpl/resturent_repositoryimpl.dart';
 import 'package:provider_with_clean_architecture/ets/resturent/domain/repository/resturent_repository.dart';
@@ -95,6 +95,8 @@ void registerUseCases() {
       () => LoginUseCase(authRepository: sl()));
   sl.registerLazySingleton<SignUpUserUseCase>(
       () => SignUpUserUseCase(authRepository: sl()));
+  sl.registerLazySingleton<UpdateUserUseCase>(
+      () => UpdateUserUseCase(userRepository: sl()));
 }
 
 // Notifier
@@ -104,7 +106,8 @@ void registerNotifier() {
         signUpUserUseCase: sl(),
         sharedPref: sl(),
       ));
-  sl.registerFactory(() => UserNotifier(getUserUseCase: sl()));
+  sl.registerFactory(
+      () => UserNotifier(getUserUseCase: sl(), updateUserUseCase: sl()));
 }
 
 Future<void> init() async {

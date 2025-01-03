@@ -1,4 +1,4 @@
-import 'package:provider_with_clean_architecture/features/login/domain/repository/auth_repository.dart';
+import 'package:provider_with_clean_architecture/features/Auth/domain/repository/auth_repository.dart';
 
 class LoginUseCase {
   final AuthRepository authRepository;

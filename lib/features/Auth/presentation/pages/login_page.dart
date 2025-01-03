@@ -8,10 +8,9 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.
 import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
 import 'package:provider_with_clean_architecture/core/utils/string_util.dart';
-import 'package:provider_with_clean_architecture/features/home_page/home_page.dart';
-import 'package:provider_with_clean_architecture/features/login/data/model/auth_state/auth_state.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/pages/sign_up_page.dart';
-import 'package:provider_with_clean_architecture/features/login/presentation/provider/auth_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Auth/data/model/auth_state/auth_state.dart';
+import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/sign_up_page.dart';
+import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/auth_notifier.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
