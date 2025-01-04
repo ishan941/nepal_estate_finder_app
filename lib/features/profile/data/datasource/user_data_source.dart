@@ -44,14 +44,4 @@ class UserDataSourceImpl extends UserDataSource {
       throw ServerException(e.toString(), 500);
     }
   }
-
-  // Future<UserModel> getUser() async {
-  //   return UserModel(
-  //     id: '676d621e9e8164aa7896d4d1',
-  //     username: 'JohnDoe',
-  //     email: 'john@example.com',
-  //     bio: 'Test bio',
-  //     avatar: 'https://example.com/avatar.png',
-  //   );
-  // }
 }
