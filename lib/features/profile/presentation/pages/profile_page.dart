@@ -32,12 +32,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     ref.read(userProvider.notifier).fetchUserData();
     userId = ref.read(userProvider)!.id;
 
-    // final user = ref.watch(userProvider); // Use watch instead of read
-    // if (user != null) {
-    //   userId = user.id;
-    // } else {
-    //   userId = ''; // Handle null case if needed
-    // }
     await ref.read(userState.notifier).getUserData(userId);
   }
 
