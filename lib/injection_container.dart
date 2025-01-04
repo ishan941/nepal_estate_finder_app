@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider_with_clean_architecture/core/dio_helper.dart';
 import 'package:provider_with_clean_architecture/core/networkinfo/network_info.dart';
 import 'package:provider_with_clean_architecture/core/token_service/services/token_service.dart';
 import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
