@@ -11,6 +11,11 @@ import 'package:provider_with_clean_architecture/features/Auth/domain/repository
 import 'package:provider_with_clean_architecture/features/Auth/domain/service/user_hive_service.dart';
 import 'package:provider_with_clean_architecture/features/Auth/domain/usecase/login_use_case.dart';
 import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/auth_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Listing/data/datasource/listing_data_source.dart';
+import 'package:provider_with_clean_architecture/features/Listing/data/repository_impl/listing_repository_impl.dart';
+import 'package:provider_with_clean_architecture/features/Listing/domain/repository/listing_repository.dart';
+import 'package:provider_with_clean_architecture/features/Listing/domain/usecase/get_listing_use_case.dart';
+import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/datasource/user_data_source.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/repository_impl/user_repository_impl.dart';
 import 'package:provider_with_clean_architecture/features/profile/domain/repository/user_repository.dart';
@@ -67,6 +72,8 @@ void registerDataSource() {
       () => AuthDataSourceImpl(dioHttp: sl(), userHiveService: sl()));
   sl.registerLazySingleton<UserDataSource>(
       () => UserDataSourceImpl(dioHttp: sl()));
+  sl.registerLazySingleton<ListingDataSource>(
+      () => ListingDataSourceImpl(dioHttp: sl()));
 }
 
 // Repository
@@ -81,6 +88,11 @@ void registerRepository() {
         networkInfo: sl(),
         tService: sl(),
       ));
+  sl.registerLazySingleton<ListingRepository>(() => ListingRepositoryImpl(
+        listingDataSource: sl(),
+        networkInfo: sl(),
+        tService: sl(),
+      ));
 }
 
 // Usecase
@@ -88,6 +100,8 @@ void registerUseCases() {
   //GetuseCase
   sl.registerLazySingleton<GetUserUseCase>(
       () => GetUserUseCase(userRepository: sl()));
+  sl.registerLazySingleton<GetListingUseCase>(
+      () => GetListingUseCase(listingRepository: sl()));
 
   //Post usecase
   sl.registerLazySingleton<LoginUseCase>(
@@ -111,6 +125,9 @@ void registerNotifier() {
       ));
   sl.registerFactory(() => UserNotifier(
       getUserUseCase: sl(), updateUserUseCase: sl(), deleteUserCase: sl()));
+  sl.registerFactory(() => ListingNotifier(
+        getListingUseCase: sl(),
+      ));
 }
 
 Future<void> init() async {
