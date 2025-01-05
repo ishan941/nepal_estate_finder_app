@@ -26,9 +26,19 @@ class DioHttp {
       dio.options.headers["Authorization"] = "Bearer $token";
     }
     if (query != null) {
-      return dio.get(url!, queryParameters: query as Map<String, dynamic>?);
+      return dio
+          .get(url!, queryParameters: query as Map<String, dynamic>?)
+          .then((response) {
+        // Log the response
+        print('Response data: ${response.data}');
+        return response;
+      });
     }
-    return dio.get(url!);
+    return dio.get(url!).then((response) {
+      // Log the response
+      print('Response data: ${response.data}');
+      return response;
+    });
   }
 
   post({String? url, Map? data, Map? query, String? token}) async {
