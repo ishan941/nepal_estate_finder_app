@@ -9,14 +9,34 @@ class ListingNotifier extends StateNotifier<ListingState> {
   ListingNotifier({required this.getListingUseCase})
       : super(const ListingState.idle());
 
-  Future<void> getListings() async {
+  Future<void> getListings({String? offer, String? type}) async {
     state = const ListingState.loading();
-    final result = await getListingUseCase(NoParams());
-    result.fold((failure) {
-      state = ListingState.error(failure.message);
-    }, (listings) {
-      state = ListingState.success(listings);
-    });
+    final result =
+        await getListingUseCase(ListingParams(offer: offer, type: type));
+    result.fold(
+      (failure) {
+        state = ListingState.error(failure.message);
+      },
+      (listings) {
+        final offerList =
+            listings.where((listing) => listing.offer == true).toList();
+        final rentList =
+            listings.where((listing) => listing.type == "rent").toList();
+        final saleList =
+            listings.where((listing) => listing.type == "sale").toList();
+        final hotDealsList =
+            listings.where((listing) => listing.type == "hot_deals").toList();
+
+        // Fix here: Passing `saleList` instead of `offerList` for the sale section
+        state = ListingState.success(
+          listings,
+          offerList,
+          rentList,
+          saleList,
+          hotDealsList, // Added hot deals list
+        );
+      },
+    );
   }
 }
 

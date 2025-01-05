@@ -4,5 +4,6 @@ import 'package:provider_with_clean_architecture/features/Listing/data/model/lis
 import 'package:provider_with_clean_architecture/features/profile/data/model/model/user_model.dart';
 
 abstract class ListingRepository {
-  Future<Either<Failure, List<ListingModel>>> getListings();
+  Future<Either<Failure, List<ListingModel>>> getListings(
+      {String? offer, String? type});
 }

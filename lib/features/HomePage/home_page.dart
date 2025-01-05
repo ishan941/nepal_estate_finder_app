@@ -4,6 +4,7 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_app_bar.dar
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
+import 'package:provider_with_clean_architecture/features/Listing/data/model/listing_model.dart';
 import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -47,106 +48,119 @@ class _HomePageState extends ConsumerState<HomePage> {
           Expanded(
             child: SingleChildScrollView(
               child: NefPadding(
-                child: Column(
-                  children: [
-                    const Row(
+                child: listingProvider.maybeWhen(
+                  success:
+                      (listings, offerList, rentList, saleList, hotDealsList) {
+                    return Column(
                       children: [
-                        Text(
-                          "Features Properties",
-                          style: NefTypography.bodyText1,
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                    listingProvider.maybeWhen(
-                      success: (listings) => SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: listings.length,
-                          itemBuilder: (context, index) {
-                            final listing = listings[index];
-                            return NefPadding(
-                              padding: const EdgeInsets.only(
-                                  right: 10, top: 16, bottom: 16),
-                              child: Container(
-                                width: 120,
-                                height: 100,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Image.network(
-                                        listing.imageUrls!.isNotEmpty
-                                            ? listing.imageUrls![0]
-                                            : '',
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (_, __, ___) =>
-                                            Icon(Icons.error),
+                        // Featured listings (horizontal list)
+                        SizedBox(
+                          height: 150,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: listings!.length,
+                            itemBuilder: (context, index) {
+                              final listing = listings[index];
+                              return NefPadding(
+                                padding: const EdgeInsets.only(
+                                    right: 10, top: 16, bottom: 16),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * .29,
+                                  height: 100,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Image.network(
+                                          listing.imageUrls!.isNotEmpty
+                                              ? listing.imageUrls![0]
+                                              : '',
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (_, __, ___) =>
+                                              Icon(Icons.error),
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      listing.name!,
-                                      style: NefTypography.bodyText2,
-                                    ),
-                                    Text(
-                                      "\$${listing.regularPrice}",
-                                      style: NefTypography.caption,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                      orElse: () =>
-                          const Center(child: CircularProgressIndicator()),
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          "Hot deals",
-                          style: NefTypography.bodyText1,
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios)
+                        // Rent listings
+                        buildCategoryRow("Hot Deals", offerList ?? []),
+                        buildCategoryRow("Sale", saleList ?? []),
+                        buildCategoryRow("Rent", rentList ?? []),
+                        // Sale listings
+
+                        // Hot Deals listings
                       ],
-                    ),
-                    const SizedBox(
-                      height: 150,
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          "Hot deals",
-                          style: NefTypography.bodyText1,
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 150,
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          "Hot deals",
-                          style: NefTypography.bodyText1,
-                        ),
-                        Spacer(),
-                        Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ],
+                    );
+                  },
+                  orElse: () =>
+                      const Center(child: CircularProgressIndicator()),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
+    );
+  }
+
+  // Helper method to build the category row (Rent, Sale, etc.)
+  Widget buildCategoryRow(String category, List<ListingModel> listings) {
+    if (listings.isEmpty) {
+      return SizedBox
+          .shrink(); // Return an empty widget if no listings match the type
+    }
+    return Column(
+      children: [
+        Row(
+          children: [
+            Text(
+              category,
+              style: NefTypography.bodyText1,
+            ),
+            Spacer(),
+            Icon(Icons.arrow_forward_ios)
+          ],
+        ),
+        SizedBox(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: listings.length,
+            itemBuilder: (context, index) {
+              final listing = listings[index];
+              return NefPadding(
+                padding: const EdgeInsets.only(right: 10, top: 16, bottom: 16),
+                child: Container(
+                  width: MediaQuery.of(context).size.width * .29,
+                  height: 100,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Image.network(
+                          listing.imageUrls!.isNotEmpty
+                              ? listing.imageUrls![0]
+                              : '',
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => Icon(Icons.error),
+                        ),
+                      ),
+                      Text(listing.name!)
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

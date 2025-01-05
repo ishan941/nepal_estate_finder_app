@@ -7,7 +7,17 @@ import 'package:provider_with_clean_architecture/core/utils/dio_http.dart';
 import 'package:provider_with_clean_architecture/features/Listing/data/model/listing_model.dart';
 
 abstract class ListingDataSource {
-  Future<List<ListingModel>> fetchListings();
+  Future<List<ListingModel>> fetchListings({
+    int limit = 9,
+    int startIndex = 0,
+    String? offer,
+    String? furnished,
+    String? parking,
+    String? type,
+    String? searchTerm,
+    String sort = "createdAt",
+    String order = "desc",
+  });
 }
 
 class ListingDataSourceImpl extends ListingDataSource {
@@ -16,9 +26,32 @@ class ListingDataSourceImpl extends ListingDataSource {
   ListingDataSourceImpl({required this.dioHttp});
 
   @override
-  Future<List<ListingModel>> fetchListings() async {
+  Future<List<ListingModel>> fetchListings({
+    int limit = 9,
+    int startIndex = 0,
+    String? offer,
+    String? furnished,
+    String? parking,
+    String? type,
+    String? searchTerm,
+    String sort = "createdAt",
+    String order = "desc",
+  }) async {
     try {
-      Response response = await dioHttp.get(url: Api.baseUrl + Api.getListings);
+      Map<String, dynamic> queryParams = {
+        'limit': limit,
+        'startIndex': startIndex,
+        'offer': offer ?? 'false', // Default to 'false' if null
+        'furnished': furnished ?? 'false', // Default to 'false' if null
+        'parking': parking ?? 'false', // Default to 'false' if null
+        'type': type ?? 'all', // Default to 'all' if null
+        'searchTerm': searchTerm ?? '',
+        'sort': sort,
+        'order': order,
+      };
+
+      Response response = await dioHttp.get(
+          url: Api.baseUrl + Api.getListings, query: queryParams);
 
       print('Response status code: ${response.statusCode}');
       print('Response data: ${response.data}');
@@ -40,37 +73,4 @@ class ListingDataSourceImpl extends ListingDataSource {
       throw ServerException(e.toString(), 500);
     }
   }
-
-  // Future<List<ListingModel>> fetchListings() async {
-  //   // Simulated response for testing
-  //   final responseData = {
-  //     'data': [
-  //       {
-  //         '_id': '123',
-  //         'name': 'Test Listing',
-  //         'description': 'Description here',
-  //         'address': 'Address here',
-  //         'regularPrice': 200.0,
-  //         'discountPrice': 180.0,
-  //         'bathrooms': 2,
-  //         'bedrooms': 3,
-  //         'furnished': true,
-  //         'parking': true,
-  //         'type': 'Sale',
-  //         'offer': true,
-  //         'imageUrls': ['url1', 'url2'],
-  //         'userRef': 'userRef',
-  //         'createdAt': '2025-01-01T12:00:00.000Z',
-  //         'updatedAt': '2025-01-01T12:00:00.000Z',
-  //         '__v': 0,
-  //       }
-  //     ]
-  //   };
-
-  //   final List<dynamic> listingData = responseData['data']!;
-  //   if (listingData.isEmpty) {
-  //     throw ServerException('No listings found', 404);
-  //   }
-  //   return listingData.map((json) => ListingModel.fromJson(json)).toList();
-  // }
 }

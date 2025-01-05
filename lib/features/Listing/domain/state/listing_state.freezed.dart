@@ -20,7 +20,13 @@ mixin _$ListingState {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ListingModel> listings) success,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +34,13 @@ mixin _$ListingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ListingModel> listings)? success,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +48,13 @@ mixin _$ListingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ListingModel> listings)? success,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +143,13 @@ class _$IdleImpl implements _Idle {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ListingModel> listings) success,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
     required TResult Function(String message) error,
   }) {
     return idle();
@@ -136,7 +160,13 @@ class _$IdleImpl implements _Idle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ListingModel> listings)? success,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return idle?.call();
@@ -147,7 +177,13 @@ class _$IdleImpl implements _Idle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ListingModel> listings)? success,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -239,7 +275,13 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ListingModel> listings) success,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -250,7 +292,13 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ListingModel> listings)? success,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -261,7 +309,13 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ListingModel> listings)? success,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -319,7 +373,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ListingModel> listings});
+  $Res call(
+      {List<ListingModel>? listings,
+      List<ListingModel>? offerList,
+      List<ListingModel>? rentList,
+      List<ListingModel>? saleList,
+      List<ListingModel>? hotDealsList});
 }
 
 /// @nodoc
@@ -333,13 +392,33 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? listings = null,
+    Object? listings = freezed,
+    Object? offerList = freezed,
+    Object? rentList = freezed,
+    Object? saleList = freezed,
+    Object? hotDealsList = freezed,
   }) {
     return _then(_$SuccessImpl(
-      null == listings
+      freezed == listings
           ? _value._listings
           : listings // ignore: cast_nullable_to_non_nullable
-              as List<ListingModel>,
+              as List<ListingModel>?,
+      freezed == offerList
+          ? _value._offerList
+          : offerList // ignore: cast_nullable_to_non_nullable
+              as List<ListingModel>?,
+      freezed == rentList
+          ? _value._rentList
+          : rentList // ignore: cast_nullable_to_non_nullable
+              as List<ListingModel>?,
+      freezed == saleList
+          ? _value._saleList
+          : saleList // ignore: cast_nullable_to_non_nullable
+              as List<ListingModel>?,
+      freezed == hotDealsList
+          ? _value._hotDealsList
+          : hotDealsList // ignore: cast_nullable_to_non_nullable
+              as List<ListingModel>?,
     ));
   }
 }
@@ -347,19 +426,71 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<ListingModel> listings) : _listings = listings;
+  const _$SuccessImpl(
+      final List<ListingModel>? listings,
+      final List<ListingModel>? offerList,
+      final List<ListingModel>? rentList,
+      final List<ListingModel>? saleList,
+      final List<ListingModel>? hotDealsList)
+      : _listings = listings,
+        _offerList = offerList,
+        _rentList = rentList,
+        _saleList = saleList,
+        _hotDealsList = hotDealsList;
 
-  final List<ListingModel> _listings;
+  final List<ListingModel>? _listings;
   @override
-  List<ListingModel> get listings {
+  List<ListingModel>? get listings {
+    final value = _listings;
+    if (value == null) return null;
     if (_listings is EqualUnmodifiableListView) return _listings;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_listings);
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ListingModel>? _offerList;
+  @override
+  List<ListingModel>? get offerList {
+    final value = _offerList;
+    if (value == null) return null;
+    if (_offerList is EqualUnmodifiableListView) return _offerList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ListingModel>? _rentList;
+  @override
+  List<ListingModel>? get rentList {
+    final value = _rentList;
+    if (value == null) return null;
+    if (_rentList is EqualUnmodifiableListView) return _rentList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ListingModel>? _saleList;
+  @override
+  List<ListingModel>? get saleList {
+    final value = _saleList;
+    if (value == null) return null;
+    if (_saleList is EqualUnmodifiableListView) return _saleList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ListingModel>? _hotDealsList;
+  @override
+  List<ListingModel>? get hotDealsList {
+    final value = _hotDealsList;
+    if (value == null) return null;
+    if (_hotDealsList is EqualUnmodifiableListView) return _hotDealsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'ListingState.success(listings: $listings)';
+    return 'ListingState.success(listings: $listings, offerList: $offerList, rentList: $rentList, saleList: $saleList, hotDealsList: $hotDealsList)';
   }
 
   @override
@@ -367,12 +498,23 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._listings, _listings));
+            const DeepCollectionEquality().equals(other._listings, _listings) &&
+            const DeepCollectionEquality()
+                .equals(other._offerList, _offerList) &&
+            const DeepCollectionEquality().equals(other._rentList, _rentList) &&
+            const DeepCollectionEquality().equals(other._saleList, _saleList) &&
+            const DeepCollectionEquality()
+                .equals(other._hotDealsList, _hotDealsList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listings));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_listings),
+      const DeepCollectionEquality().hash(_offerList),
+      const DeepCollectionEquality().hash(_rentList),
+      const DeepCollectionEquality().hash(_saleList),
+      const DeepCollectionEquality().hash(_hotDealsList));
 
   @JsonKey(ignore: true)
   @override
@@ -385,10 +527,16 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ListingModel> listings) success,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(listings);
+    return success(listings, offerList, rentList, saleList, hotDealsList);
   }
 
   @override
@@ -396,10 +544,16 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ListingModel> listings)? success,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(listings);
+    return success?.call(listings, offerList, rentList, saleList, hotDealsList);
   }
 
   @override
@@ -407,12 +561,18 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ListingModel> listings)? success,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(listings);
+      return success(listings, offerList, rentList, saleList, hotDealsList);
     }
     return orElse();
   }
@@ -456,9 +616,18 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements ListingState {
-  const factory _Success(final List<ListingModel> listings) = _$SuccessImpl;
+  const factory _Success(
+      final List<ListingModel>? listings,
+      final List<ListingModel>? offerList,
+      final List<ListingModel>? rentList,
+      final List<ListingModel>? saleList,
+      final List<ListingModel>? hotDealsList) = _$SuccessImpl;
 
-  List<ListingModel> get listings;
+  List<ListingModel>? get listings;
+  List<ListingModel>? get offerList;
+  List<ListingModel>? get rentList;
+  List<ListingModel>? get saleList;
+  List<ListingModel>? get hotDealsList;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -530,7 +699,13 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(List<ListingModel> listings) success,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -541,7 +716,13 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
     TResult? Function()? loading,
-    TResult? Function(List<ListingModel> listings)? success,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -552,7 +733,13 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(List<ListingModel> listings)? success,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

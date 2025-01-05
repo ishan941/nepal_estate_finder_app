@@ -8,6 +8,12 @@ part 'listing_state.freezed.dart';
 class ListingState with _$ListingState {
   const factory ListingState.idle() = _Idle;
   const factory ListingState.loading() = _Loading;
-  const factory ListingState.success(List<ListingModel> listings) = _Success;
+  const factory ListingState.success(
+    List<ListingModel>? listings,
+    List<ListingModel>? offerList,
+    List<ListingModel>? rentList,
+    List<ListingModel>? saleList,
+    List<ListingModel>? hotDealsList, // Add Hot Deals list
+  ) = _Success;
   const factory ListingState.error(String message) = _Error;
 }

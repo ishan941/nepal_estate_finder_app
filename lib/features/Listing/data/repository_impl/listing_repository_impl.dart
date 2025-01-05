@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:provider_with_clean_architecture/core/error/failure.dart';
@@ -14,6 +15,7 @@ class ListingRepositoryImpl extends BaseRepository
   final NetworkInfo networkInfo;
   final ListingDataSource listingDataSource;
   final TokenService tService;
+
   ListingRepositoryImpl(
       {required this.listingDataSource,
       required this.networkInfo,
@@ -21,10 +23,11 @@ class ListingRepositoryImpl extends BaseRepository
       : super(tokenService: tService);
 
   @override
-  Future<Either<Failure, List<ListingModel>>> getListings() async {
+  Future<Either<Failure, List<ListingModel>>> getListings(
+      {String? offer, String? type}) async {
     if (await networkInfo.isConnected) {
       try {
-        final result = await listingDataSource.fetchListings();
+        final result = await listingDataSource.fetchListings(offer: offer);
         return Right(result);
       } catch (e) {
         if (e is DioException) {
