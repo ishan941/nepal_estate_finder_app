@@ -8,12 +8,16 @@ import 'package:provider_with_clean_architecture/injection_container.dart';
 class UserNotifier extends StateNotifier<UserState> {
   final GetUserUseCase getUserUseCase;
   final UpdateUserUseCase updateUserUseCase;
+  final DeleteUserUseCase deleteUserCase;
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController bio = TextEditingController();
   TextEditingController password = TextEditingController();
-  UserNotifier({required this.updateUserUseCase, required this.getUserUseCase})
-      : super(const UserState.idle());
+  UserNotifier({
+    required this.updateUserUseCase,
+    required this.getUserUseCase,
+    required this.deleteUserCase,
+  }) : super(const UserState.idle());
 
   UserModel? userModel;
   UserModel? editedUser;
@@ -40,9 +44,21 @@ class UserNotifier extends StateNotifier<UserState> {
       return false;
     }
   }
+
+  Future<bool> deleteUser(String userId) async {
+    try {
+      state = const UserState.loading();
+      await deleteUser(userId);
+
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }
 
 final userState = StateNotifierProvider<UserNotifier, UserState>((ref) =>
     UserNotifier(
         getUserUseCase: GetUserUseCase(userRepository: sl()),
-        updateUserUseCase: UpdateUserUseCase(userRepository: sl())));
+        updateUserUseCase: UpdateUserUseCase(userRepository: sl()),
+        deleteUserCase: DeleteUserUseCase(userRepository: sl())));

@@ -4,9 +4,7 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_elevated_bu
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/info_helper.dart';
-import 'package:provider_with_clean_architecture/features/Auth/domain/service/user_hive_service.dart';
 import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
-import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/user_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/model/model/user_model.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
 

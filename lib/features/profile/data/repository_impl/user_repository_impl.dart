@@ -60,4 +60,25 @@ class UserRepositoryImpl extends BaseRepository implements UserRepository {
       return const Left(NetworkFailure(noInternetConnection, 0));
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> deleteUser(String? userId) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final UserModel userModel =
+            await userDataSource.deleteUser(token: accessToken, userId: userId);
+        return Right(userModel);
+      } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure(
+              (e.response?.data == null) ? e.message : e.response?.data,
+              e.response?.statusCode));
+        } else {
+          return const Left(ServerFailure(somethingWentWrongStr, 0));
+        }
+      }
+    } else {
+      return const Left(NetworkFailure(noInternetConnection, 0));
+    }
+  }
 }

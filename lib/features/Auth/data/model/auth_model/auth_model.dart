@@ -14,7 +14,7 @@ class AuthModel with _$AuthModel {
     DateTime? createdAt,
     DateTime? updatedAt,
     @JsonKey(name: '__v') int? version,
-    String? accessToken, // Add accessToken field here
+    String? accessToken,
   }) = _AuthModel;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) =>

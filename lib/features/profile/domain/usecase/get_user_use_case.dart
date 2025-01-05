@@ -24,3 +24,13 @@ class UpdateUserUseCase extends UseCase<UserModel, UserModel> {
     return userRepository.updateUser(updatedUser);
   }
 }
+
+class DeleteUserUseCase extends UseCase<UserModel, String> {
+  final UserRepository userRepository;
+  DeleteUserUseCase({required this.userRepository});
+
+  @override
+  Future<Either<Failure, UserModel>> call(String userId) {
+    return userRepository.deleteUser(userId);
+  }
+}
