@@ -6,4 +6,5 @@ import '../../data/model/model/user_model.dart';
 abstract class UserRepository {
   Future<Either<Failure, UserModel>> getUserData(String? userId);
   Future<Either<Failure, UserModel>> updateUser(UserModel updatedUser);
+  Future<Either<Failure, UserModel>> deleteUser(String? userId);
 }

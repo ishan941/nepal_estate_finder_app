@@ -7,6 +7,7 @@ import 'package:provider_with_clean_architecture/features/profile/data/model/mod
 abstract class UserDataSource {
   Future<UserModel> getUser({String? token, String? userId});
   Future<UserModel> updateUser({String? token, required UserModel updatedUser});
+  Future<UserModel> deleteUser({String? token, required String? userId});
 }
 
 class UserDataSourceImpl extends UserDataSource {
@@ -35,6 +36,23 @@ class UserDataSourceImpl extends UserDataSource {
           url: Api.baseUrl + Api.updateUserByIdApi + updatedUser.id,
           token: token,
           data: updatedUser.toJson());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return UserModel.fromJson(response.data);
+      } else {
+        throw ServerException(response.statusMessage, response.statusCode);
+      }
+    } catch (e) {
+      throw ServerException(e.toString(), 500);
+    }
+  }
+
+  @override
+  Future<UserModel> deleteUser({String? token, required String? userId}) async {
+    try {
+      Response response = await dioHttp.delete(
+        url: Api.baseUrl + Api.updateUserByIdApi + userId!,
+        token: token,
+      );
       if (response.statusCode == 200 || response.statusCode == 201) {
         return UserModel.fromJson(response.data);
       } else {

@@ -96,6 +96,10 @@ void registerUseCases() {
       () => SignUpUserUseCase(authRepository: sl()));
   sl.registerLazySingleton<UpdateUserUseCase>(
       () => UpdateUserUseCase(userRepository: sl()));
+
+  //Delete Usecase
+  sl.registerLazySingleton<DeleteUserUseCase>(
+      () => DeleteUserUseCase(userRepository: sl()));
 }
 
 // Notifier
@@ -105,8 +109,8 @@ void registerNotifier() {
         signUpUserUseCase: sl(),
         sharedPref: sl(),
       ));
-  sl.registerFactory(
-      () => UserNotifier(getUserUseCase: sl(), updateUserUseCase: sl()));
+  sl.registerFactory(() => UserNotifier(
+      getUserUseCase: sl(), updateUserUseCase: sl(), deleteUserCase: sl()));
 }
 
 Future<void> init() async {
