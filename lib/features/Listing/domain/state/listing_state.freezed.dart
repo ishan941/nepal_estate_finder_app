@@ -27,6 +27,7 @@ mixin _$ListingState {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)
         success,
+    required TResult Function(List<ListingModel>? listings) userListings,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ mixin _$ListingState {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +57,7 @@ mixin _$ListingState {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult Function(List<ListingModel>? listings)? userListings,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -64,6 +67,7 @@ mixin _$ListingState {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +76,7 @@ mixin _$ListingState {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -80,6 +85,7 @@ mixin _$ListingState {
     TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -150,6 +156,7 @@ class _$IdleImpl implements _Idle {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)
         success,
+    required TResult Function(List<ListingModel>? listings) userListings,
     required TResult Function(String message) error,
   }) {
     return idle();
@@ -167,6 +174,7 @@ class _$IdleImpl implements _Idle {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
     TResult? Function(String message)? error,
   }) {
     return idle?.call();
@@ -184,6 +192,7 @@ class _$IdleImpl implements _Idle {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult Function(List<ListingModel>? listings)? userListings,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -199,6 +208,7 @@ class _$IdleImpl implements _Idle {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
     required TResult Function(_Error value) error,
   }) {
     return idle(this);
@@ -210,6 +220,7 @@ class _$IdleImpl implements _Idle {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
     TResult? Function(_Error value)? error,
   }) {
     return idle?.call(this);
@@ -221,6 +232,7 @@ class _$IdleImpl implements _Idle {
     TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -282,6 +294,7 @@ class _$LoadingImpl implements _Loading {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)
         success,
+    required TResult Function(List<ListingModel>? listings) userListings,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -299,6 +312,7 @@ class _$LoadingImpl implements _Loading {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -316,6 +330,7 @@ class _$LoadingImpl implements _Loading {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult Function(List<ListingModel>? listings)? userListings,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -331,6 +346,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -342,6 +358,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -353,6 +370,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -534,6 +552,7 @@ class _$SuccessImpl implements _Success {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)
         success,
+    required TResult Function(List<ListingModel>? listings) userListings,
     required TResult Function(String message) error,
   }) {
     return success(listings, offerList, rentList, saleList, hotDealsList);
@@ -551,6 +570,7 @@ class _$SuccessImpl implements _Success {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
     TResult? Function(String message)? error,
   }) {
     return success?.call(listings, offerList, rentList, saleList, hotDealsList);
@@ -568,6 +588,7 @@ class _$SuccessImpl implements _Success {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult Function(List<ListingModel>? listings)? userListings,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -583,6 +604,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
     required TResult Function(_Error value) error,
   }) {
     return success(this);
@@ -594,6 +616,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
     TResult? Function(_Error value)? error,
   }) {
     return success?.call(this);
@@ -605,6 +628,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -630,6 +654,185 @@ abstract class _Success implements ListingState {
   List<ListingModel>? get hotDealsList;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserListingsImplCopyWith<$Res> {
+  factory _$$UserListingsImplCopyWith(
+          _$UserListingsImpl value, $Res Function(_$UserListingsImpl) then) =
+      __$$UserListingsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ListingModel>? listings});
+}
+
+/// @nodoc
+class __$$UserListingsImplCopyWithImpl<$Res>
+    extends _$ListingStateCopyWithImpl<$Res, _$UserListingsImpl>
+    implements _$$UserListingsImplCopyWith<$Res> {
+  __$$UserListingsImplCopyWithImpl(
+      _$UserListingsImpl _value, $Res Function(_$UserListingsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listings = freezed,
+  }) {
+    return _then(_$UserListingsImpl(
+      freezed == listings
+          ? _value._listings
+          : listings // ignore: cast_nullable_to_non_nullable
+              as List<ListingModel>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserListingsImpl implements _UserListings {
+  const _$UserListingsImpl(final List<ListingModel>? listings)
+      : _listings = listings;
+
+  final List<ListingModel>? _listings;
+  @override
+  List<ListingModel>? get listings {
+    final value = _listings;
+    if (value == null) return null;
+    if (_listings is EqualUnmodifiableListView) return _listings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ListingState.userListings(listings: $listings)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserListingsImpl &&
+            const DeepCollectionEquality().equals(other._listings, _listings));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listings));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserListingsImplCopyWith<_$UserListingsImpl> get copyWith =>
+      __$$UserListingsImplCopyWithImpl<_$UserListingsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)
+        success,
+    required TResult Function(List<ListingModel>? listings) userListings,
+    required TResult Function(String message) error,
+  }) {
+    return userListings(listings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
+    TResult? Function(String message)? error,
+  }) {
+    return userListings?.call(listings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function(
+            List<ListingModel>? listings,
+            List<ListingModel>? offerList,
+            List<ListingModel>? rentList,
+            List<ListingModel>? saleList,
+            List<ListingModel>? hotDealsList)?
+        success,
+    TResult Function(List<ListingModel>? listings)? userListings,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (userListings != null) {
+      return userListings(listings);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
+    required TResult Function(_Error value) error,
+  }) {
+    return userListings(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
+    TResult? Function(_Error value)? error,
+  }) {
+    return userListings?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (userListings != null) {
+      return userListings(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserListings implements ListingState {
+  const factory _UserListings(final List<ListingModel>? listings) =
+      _$UserListingsImpl;
+
+  List<ListingModel>? get listings;
+  @JsonKey(ignore: true)
+  _$$UserListingsImplCopyWith<_$UserListingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -706,6 +909,7 @@ class _$ErrorImpl implements _Error {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)
         success,
+    required TResult Function(List<ListingModel>? listings) userListings,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -723,6 +927,7 @@ class _$ErrorImpl implements _Error {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult? Function(List<ListingModel>? listings)? userListings,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -740,6 +945,7 @@ class _$ErrorImpl implements _Error {
             List<ListingModel>? saleList,
             List<ListingModel>? hotDealsList)?
         success,
+    TResult Function(List<ListingModel>? listings)? userListings,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -755,6 +961,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Idle value) idle,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_UserListings value) userListings,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -766,6 +973,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Idle value)? idle,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_UserListings value)? userListings,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -777,6 +985,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Idle value)? idle,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_UserListings value)? userListings,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

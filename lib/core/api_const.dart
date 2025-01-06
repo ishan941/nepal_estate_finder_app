@@ -10,6 +10,7 @@ class Api {
   static const String deleteUserByIdApi =
       "api/user/delete/6751b78dcf11202c584e7582";
   static const String getListings = "api/listing/get";
+  static const String getUserListings = "api/user/listings/";
 //>>>>>>>>
 //
 //

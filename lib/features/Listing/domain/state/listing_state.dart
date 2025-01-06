@@ -13,7 +13,10 @@ class ListingState with _$ListingState {
     List<ListingModel>? offerList,
     List<ListingModel>? rentList,
     List<ListingModel>? saleList,
-    List<ListingModel>? hotDealsList, // Add Hot Deals list
+    List<ListingModel>? hotDealsList,
   ) = _Success;
+  const factory ListingState.userListings(
+    List<ListingModel>? listings,
+  ) = _UserListings;
   const factory ListingState.error(String message) = _Error;
 }

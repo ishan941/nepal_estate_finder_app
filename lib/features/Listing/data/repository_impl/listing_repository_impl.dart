@@ -42,4 +42,26 @@ class ListingRepositoryImpl extends BaseRepository
       return const Left(NetworkFailure(noInternetConnection, 0));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ListingModel>>> fetchUserListings(
+      {String? token, String? userRef}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final result = await listingDataSource.fetchUserListings(
+            token: accessToken, userRef: userRef);
+        return Right(result);
+      } catch (e) {
+        if (e is DioException) {
+          return Left(ServerFailure(
+              (e.response?.data == null) ? e.message : e.response?.data,
+              e.response?.statusCode));
+        } else {
+          return const Left(ServerFailure(somethingWentWrongStr, 0));
+        }
+      }
+    } else {
+      return const Left(NetworkFailure(noInternetConnection, 0));
+    }
+  }
 }

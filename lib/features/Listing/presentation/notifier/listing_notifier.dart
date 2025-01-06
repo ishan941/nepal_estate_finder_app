@@ -2,14 +2,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/usecase/usecase.dart';
 import 'package:provider_with_clean_architecture/features/Listing/domain/state/listing_state.dart';
 import 'package:provider_with_clean_architecture/features/Listing/domain/usecase/get_listing_use_case.dart';
+import 'package:provider_with_clean_architecture/features/Listing/domain/usecase/get_user_listings_use_case.dart';
 import 'package:provider_with_clean_architecture/injection_container.dart';
 
 class ListingNotifier extends StateNotifier<ListingState> {
   final GetListingUseCase getListingUseCase;
-  ListingNotifier({required this.getListingUseCase})
-      : super(const ListingState.idle());
+  final GetUserListingsUseCase getUserListingsUseCase;
 
-  Future<void> getListings({String? offer, String? type}) async {
+  ListingNotifier({
+    required this.getListingUseCase,
+    required this.getUserListingsUseCase,
+  }) : super(const ListingState.idle());
+
+  Future<void> getListings({
+    String? userId,
+    String? offer,
+    String? type,
+  }) async {
     state = const ListingState.loading();
     final result =
         await getListingUseCase(ListingParams(offer: offer, type: type));
@@ -27,13 +36,27 @@ class ListingNotifier extends StateNotifier<ListingState> {
         final hotDealsList =
             listings.where((listing) => listing.type == "hot_deals").toList();
 
-        // Fix here: Passing `saleList` instead of `offerList` for the sale section
         state = ListingState.success(
           listings,
           offerList,
           rentList,
           saleList,
-          hotDealsList, // Added hot deals list
+          hotDealsList,
+        );
+      },
+    );
+  }
+
+  Future<void> getUserListings(String? userId) async {
+    state = const ListingState.loading();
+    final result = await getUserListingsUseCase(userId);
+    result.fold(
+      (failure) {
+        state = ListingState.error(failure.message);
+      },
+      (listings) {
+        state = ListingState.userListings(
+          listings,
         );
       },
     );
@@ -41,4 +64,8 @@ class ListingNotifier extends StateNotifier<ListingState> {
 }
 
 final listingState = StateNotifierProvider<ListingNotifier, ListingState>(
-    (ref) => ListingNotifier(getListingUseCase: sl()));
+  (ref) => ListingNotifier(
+    getListingUseCase: sl(),
+    getUserListingsUseCase: sl(),
+  ),
+);
