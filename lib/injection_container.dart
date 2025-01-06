@@ -15,6 +15,7 @@ import 'package:provider_with_clean_architecture/features/Listing/data/datasourc
 import 'package:provider_with_clean_architecture/features/Listing/data/repository_impl/listing_repository_impl.dart';
 import 'package:provider_with_clean_architecture/features/Listing/domain/repository/listing_repository.dart';
 import 'package:provider_with_clean_architecture/features/Listing/domain/usecase/get_listing_use_case.dart';
+import 'package:provider_with_clean_architecture/features/Listing/domain/usecase/get_user_listings_use_case.dart';
 import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/datasource/user_data_source.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/repository_impl/user_repository_impl.dart';
@@ -102,6 +103,8 @@ void registerUseCases() {
       () => GetUserUseCase(userRepository: sl()));
   sl.registerLazySingleton<GetListingUseCase>(
       () => GetListingUseCase(listingRepository: sl()));
+  sl.registerLazySingleton<GetUserListingsUseCase>(
+      () => GetUserListingsUseCase(listingRepository: sl()));
 
   //Post usecase
   sl.registerLazySingleton<LoginUseCase>(
@@ -127,6 +130,7 @@ void registerNotifier() {
       getUserUseCase: sl(), updateUserUseCase: sl(), deleteUserCase: sl()));
   sl.registerFactory(() => ListingNotifier(
         getListingUseCase: sl(),
+        getUserListingsUseCase: sl(),
       ));
 }
 

@@ -4,6 +4,7 @@ import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
 
 import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/user_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/model/model/user_model.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/pages/edit_profile.dart';
@@ -28,20 +29,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   }
 
   Future<void> _initializeUserData() async {
-    // Fetch user data from Hive or other storage
     await ref.read(userProvider.notifier).fetchUserData();
-
-    // Wait for user ID to be fetched
     userId = ref.read(userProvider)?.id ?? '';
     if (userId.isNotEmpty) {
-      // Fetch detailed user data
       await ref.read(userState.notifier).getUserData(userId);
+      await ref.read(listingState.notifier).getUserListings(userId);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final userData = ref.watch(userState);
+    final userListing = ref.watch(listingState);
 
     return userData.maybeWhen(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -162,11 +161,52 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     ),
                   ),
                 ),
+                SizedBox(height: 16),
+                Text("My Listings"),
+                SizedBox(height: 8),
+                userListing.maybeWhen(
+                  orElse: () => const SizedBox.shrink(),
+                  userListings: (listings) {
+                    return Container(
+                      height: 200,
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, // Number of items in a row
+                          crossAxisSpacing: 8.0, // Spacing between columns
+                          mainAxisSpacing: 8.0, // Spacing between rows
+                          childAspectRatio:
+                              3 / 2, // Adjust aspect ratio for item size
+                        ),
+                        itemCount: listings!.length,
+                        itemBuilder: (context, index) {
+                          final listing = listings[index];
+
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              color: secondary300,
+                              child: Image.network(
+                                listing.imageUrls!.isNotEmpty
+                                    ? listing.imageUrls![0]
+                                    : '',
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) =>
+                                    const Icon(Icons.error),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           ),
         );
       },
+
       orElse: () =>
           const SizedBox.shrink(), // Fallback if state is not recognized
     );

@@ -6,4 +6,6 @@ import 'package:provider_with_clean_architecture/features/profile/data/model/mod
 abstract class ListingRepository {
   Future<Either<Failure, List<ListingModel>>> getListings(
       {String? offer, String? type});
+  Future<Either<Failure, List<ListingModel>>> fetchUserListings(
+      {String? token, String? userRef});
 }
