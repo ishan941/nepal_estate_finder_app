@@ -28,6 +28,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authState = ref.watch(authProvider);
+    final authNotifier = ref.watch(authProvider.notifier);
 
     return Scaffold(
       body: GestureDetector(
@@ -51,6 +52,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 controller: _passwordController,
                 obscureText: true,
                 focusNode: _passwordFocusNode,
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                      value: authState.rememberMe,
+                      onChanged: (bool? value) {
+                        authNotifier.toggleRememberMe(value ?? false);
+                      }),
+                  Text("Remember Me"),
+                ],
               ),
               const SizedBox(height: NefSpacing.spacing2),
               NefElevatedButton(

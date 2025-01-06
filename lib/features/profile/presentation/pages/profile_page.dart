@@ -24,16 +24,16 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     super.initState();
     Future.delayed(Duration.zero, () async {
       ref.read(userProvider.notifier).fetchUserData();
-      // _fetchUserId();
+      _fetchUserId();
     });
   }
 
-  // Future<void> _fetchUserId() async {
-  //   ref.read(userProvider.notifier).fetchUserData();
-  //   userId = ref.read(userProvider)!.id;
+  Future<void> _fetchUserId() async {
+    ref.read(userProvider.notifier).fetchUserData();
+    userId = ref.read(userProvider)!.id;
 
-  //   await ref.read(userState.notifier).getUserData(userId);
-  // }
+    await ref.read(userState.notifier).getUserData(userId);
+  }
 
   @override
   Widget build(BuildContext context) {

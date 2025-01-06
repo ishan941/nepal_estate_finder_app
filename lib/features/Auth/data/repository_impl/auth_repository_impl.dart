@@ -19,7 +19,6 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       return await authDataSource.login(email, password);
     } catch (e) {
-      // Log the error and rethrow it or wrap it in a custom exception
       print("Error in login: $e");
       throw Exception('Failed to log in. Please try again later.');
     }

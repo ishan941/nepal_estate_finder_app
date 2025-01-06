@@ -100,7 +100,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
               const SizedBox(height: NefSpacing.spacing2),
               NefElevatedButton(
                 text: authState.maybeWhen(
-                  loading: () => 'Signing Up...',
+                  // loading: () => 'Signing Up...',
                   orElse: () => 'Sign Up',
                 ),
                 onPressed: _handleSignUp,
