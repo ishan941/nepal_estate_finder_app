@@ -15,6 +15,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool rememberMe = false;
 
   AuthNotifier({
     required this.signUpUserUseCase,
@@ -22,17 +23,34 @@ class AuthNotifier extends StateNotifier<AuthState> {
     required this.sharedPref,
   }) : super(const AuthState.idle());
 
+  String _mapErrorToMessage(String error) {
+    if (error.contains('401')) {
+      return 'Invalid credentials. Please try again.';
+    } else if (error.contains('Network')) {
+      return 'Network error. Check your connection.';
+    }
+    return 'An unexpected error occurred.';
+  }
+
   Future<void> login(String email, String password) async {
     try {
-      state = const AuthState.loading();
+      state = AuthState.loading(rememberMe: state.rememberMe);
       final userData = await loginUseCase.execute(email, password);
+
+      if (userData == null || userData.isEmpty) {
+        state = AuthState.error('Invalid login response',
+            rememberMe: state.rememberMe);
+        return;
+      }
+
       final user = AuthModel.fromJson(userData);
       await sharedPref.saveDataToPreference(accessTokenKey, user.accessToken);
-      await sharedPref.saveDataToPreference(userIdKey, user.id); // Save userId
+      await sharedPref.saveDataToPreference(userIdKey, user.id);
 
-      state = AuthState.authenticated(user);
+      state = AuthState.authenticated(user, rememberMe: state.rememberMe);
     } catch (e) {
-      state = AuthState.error(e.toString());
+      final errorMessage = _mapErrorToMessage(e.toString());
+      state = AuthState.error(errorMessage, rememberMe: state.rememberMe);
     }
   }
 
@@ -60,9 +78,25 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 
   Future<void> logout() async {
+    state = AuthState.loading(rememberMe: state.rememberMe);
+
     final userHiveService = UserHiveService();
+    await sharedPref.clearPreferenceData();
     await userHiveService.clearUserData();
+    state = AuthState.unauthenticated(rememberMe: state.rememberMe);
     print('User data cleared from Hive.');
+  }
+
+  void toggleRememberMe(bool value) async {
+    await sharedPref.saveDataToPreference('remember_me', value);
+    state = state.when(
+      idle: (_) => AuthState.idle(rememberMe: value),
+      loading: (_) => AuthState.loading(rememberMe: value),
+      authenticated: (user, _) =>
+          AuthState.authenticated(user, rememberMe: value),
+      unauthenticated: (_) => AuthState.unauthenticated(rememberMe: value),
+      error: (message, _) => AuthState.error(message, rememberMe: value),
+    );
   }
 }
 
