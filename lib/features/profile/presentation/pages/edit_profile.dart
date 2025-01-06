@@ -119,7 +119,6 @@ class _EditProfileState extends ConsumerState<EditProfile> {
                     if (success) {
                       InfoHelper.showSuccessToast(
                           context, "Successfully updated");
-                      Navigator.pop(context);
                     } else {
                       InfoHelper.showErrorToast(context, "failed");
                     }
@@ -131,8 +130,9 @@ class _EditProfileState extends ConsumerState<EditProfile> {
           ),
         );
       },
-      orElse: () =>
-          const SizedBox.shrink(), // Fallback if state is not recognized
+      orElse: () => const SizedBox.shrink(
+        child: Text("No data available at the moment"),
+      ), // Fallback if state is not recognized
     );
   }
 }

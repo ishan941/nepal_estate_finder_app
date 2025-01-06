@@ -22,22 +22,27 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () async {
-      ref.read(userProvider.notifier).fetchUserData();
-      _fetchUserId();
+    Future.microtask(() async {
+      await _initializeUserData();
     });
   }
 
-  Future<void> _fetchUserId() async {
-    ref.read(userProvider.notifier).fetchUserData();
-    userId = ref.read(userProvider)!.id;
+  Future<void> _initializeUserData() async {
+    // Fetch user data from Hive or other storage
+    await ref.read(userProvider.notifier).fetchUserData();
 
-    await ref.read(userState.notifier).getUserData(userId);
+    // Wait for user ID to be fetched
+    userId = ref.read(userProvider)?.id ?? '';
+    if (userId.isNotEmpty) {
+      // Fetch detailed user data
+      await ref.read(userState.notifier).getUserData(userId);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final userData = ref.watch(userState);
+
     return userData.maybeWhen(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (message) => Scaffold(

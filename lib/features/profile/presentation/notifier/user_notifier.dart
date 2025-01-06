@@ -38,9 +38,13 @@ class UserNotifier extends StateNotifier<UserState> {
     try {
       state = const UserState.loading();
       await updateUserUseCase(updatedUser);
+      userModel = updatedUser;
+      state = UserState.success(userModel!);
 
       return true;
     } catch (error) {
+      state = UserState.error(error.toString());
+
       return false;
     }
   }
