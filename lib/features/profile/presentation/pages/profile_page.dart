@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider_with_clean_architecture/core/nef_custom/nef_card.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
 
 import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/user_notifier.dart';
+import 'package:provider_with_clean_architecture/features/HomePage/model/listingModel/listing_details.dart';
 import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
+import 'package:provider_with_clean_architecture/features/Listing/presentation/pages/listingDetails.dart';
 import 'package:provider_with_clean_architecture/features/profile/data/model/model/user_model.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/pages/edit_profile.dart';
@@ -163,39 +166,52 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text("My Listings"),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 16),
+                  const Text("My Listings"),
+                  const SizedBox(height: 8),
                   userListing.maybeWhen(
                     orElse: () => const SizedBox.shrink(),
                     userListings: (listings) {
-                      return Container(
-                        height: 200,
-                        child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // Number of items in a row
-                            crossAxisSpacing: 8.0, // Spacing between columns
-                            mainAxisSpacing: 8.0, // Spacing between rows
-                            childAspectRatio:
-                                3 / 2, // Adjust aspect ratio for item size
-                          ),
+                      return SizedBox(
+                        height: 230,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
                           itemCount: listings!.length,
                           itemBuilder: (context, index) {
                             final listing = listings[index];
 
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                color: secondary300,
-                                child: Image.network(
-                                  listing.imageUrls!.isNotEmpty
-                                      ? listing.imageUrls![0]
-                                      : '',
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) =>
-                                      const Icon(Icons.error),
-                                ),
+                            final listingDetailsModel = ListingDetailsModel(
+                              id: listing.id,
+                              name: listing.name!,
+                              description: listing.description!,
+                              address: listing.address!,
+                              regularPrice: listing.regularPrice,
+                              discountPrice: listing.discountPrice,
+                              bathrooms: listing.bathrooms,
+                              bedrooms: listing.bedrooms,
+                              furnished: listing.furnished,
+                              parking: listing.parking,
+                              type: listing.type!,
+                              offer: listing.offer,
+                              imageUrls: listing.imageUrls,
+                              userRef: listing.userRef,
+                              createdAt: listing.createdAt,
+                              updatedAt: listing.updatedAt,
+                            );
+
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ListingDetails(
+                                              listingDetailsModel:
+                                                  listingDetailsModel,
+                                            )));
+                              },
+                              child: NefCard(
+                                imageUrl: listing.imageUrls![0],
+                                listingDetailsModel: listingDetailsModel,
                               ),
                             );
                           },

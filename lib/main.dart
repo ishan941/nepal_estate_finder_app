@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_splash_screen.dart';
 import 'package:provider_with_clean_architecture/features/Auth/data/model/hive/user.dart';
-import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
 import 'package:provider_with_clean_architecture/firebase_options.dart';
 
 import 'injection_container.dart' as di;
