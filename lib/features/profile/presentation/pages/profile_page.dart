@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_card.dart';
+import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
+import 'package:provider_with_clean_architecture/core/utils/custom_simmer.dart';
 import 'package:provider_with_clean_architecture/features/Auth/presentation/pages/login_page.dart';
 
 import 'package:provider_with_clean_architecture/features/Auth/presentation/provider/user_notifier.dart';
@@ -66,7 +68,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ],
         ),
         body: userData.maybeWhen(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const NefPadding(
+            child: CustomShimmer(isProfile: true, height: 200, width: 100),
+          ),
           error: (message) => Scaffold(
             body: Center(child: Text(message ?? 'An error occurred')),
           ), // Error state

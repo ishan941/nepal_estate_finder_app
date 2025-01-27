@@ -5,6 +5,7 @@ import 'package:provider_with_clean_architecture/core/nef_custom/nef_card.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_text_form_field.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_typography.dart';
+import 'package:provider_with_clean_architecture/core/utils/custom_simmer.dart';
 import 'package:provider_with_clean_architecture/features/HomePage/model/listingModel/listing_details.dart';
 import 'package:provider_with_clean_architecture/features/Listing/data/model/listing_model.dart';
 import 'package:provider_with_clean_architecture/features/Listing/presentation/notifier/listing_notifier.dart';
@@ -37,6 +38,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     final listingProvider = ref.watch(listingState);
     return Scaffold(
       appBar: NefAppBar(
+        showBackButton: false,
         title: "Home page",
       ),
       body: Column(
@@ -102,8 +104,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                       ],
                     );
                   },
-                  orElse: () =>
-                      const Center(child: CircularProgressIndicator()),
+                  orElse: () => Container(
+                      height: 500,
+                      child: const Center(
+                          child: (CustomShimmer(height: 150, width: 100)))),
                 ),
               ),
             ),

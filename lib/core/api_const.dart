@@ -1,11 +1,11 @@
 class Api {
 //
 // local
-  static const String baseUrl = 'https://d4b9-27-34-73-171.ngrok-free.app/';
+  // static const String baseUrl = 'https://d4b9-27-34-73-171.ngrok-free.app/';
 
   //
   // Prod
-  // static const String baseUrl = "https://nepalestatefinder.onrender.com/";
+  static const String baseUrl = "https://nepalestatefinder.onrender.com/";
   static const String loginApi = 'api/auth/signin';
   static const String signUpUserApi = 'api/auth/signup';
   static const String getUserByIdApi = 'api/user/';
