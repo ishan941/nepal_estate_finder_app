@@ -72,7 +72,7 @@ class NefCard extends StatelessWidget {
                     size: 15,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .21,
+                    width: MediaQuery.of(context).size.width * .19,
                     child: Text(
                       listingDetailsModel.address ?? "",
                       style: const TextStyle(
