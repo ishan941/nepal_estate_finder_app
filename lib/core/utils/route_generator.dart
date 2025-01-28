@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider_with_clean_architecture/core/utils/route_constants.dart';
-import 'package:provider_with_clean_architecture/ets/student/presentation/pages/student_form.dart';
 
 class RouteGenerator {
   static navigateToPage(BuildContext context, String route,
@@ -20,9 +18,6 @@ class RouteGenerator {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.studentFormRoute:
-        return MaterialPageRoute(builder: (_) => StudentForm());
-
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
