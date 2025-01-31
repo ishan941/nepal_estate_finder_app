@@ -22,24 +22,7 @@ import 'package:provider_with_clean_architecture/features/profile/data/repositor
 import 'package:provider_with_clean_architecture/features/profile/domain/repository/user_repository.dart';
 import 'package:provider_with_clean_architecture/features/profile/domain/usecase/get_user_use_case.dart';
 import 'package:provider_with_clean_architecture/features/profile/presentation/notifier/user_notifier.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/data/data%20source/resturent_datasource.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/data/repositoryImpl/resturent_repositoryimpl.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/domain/repository/resturent_repository.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/add_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/delete_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/edit_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/domain/use_cases/get_resturent_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/resturent/presentation/provider/resturent_provider.dart';
-import 'package:provider_with_clean_architecture/ets/student/data/datasource/student_datasource.dart';
-import 'package:provider_with_clean_architecture/ets/student/data/repositories/student_repository_impl.dart';
-import 'package:provider_with_clean_architecture/ets/student/domain/repositories/student_repository.dart';
-import 'package:provider_with_clean_architecture/ets/student/domain/usecase/get_student_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/student/domain/usecase/student_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/student/presentation/provider/student_provider.dart';
-import 'package:provider_with_clean_architecture/ets/user/data/repositories_impl/post_repositories_impl.dart';
-import 'package:provider_with_clean_architecture/ets/user/domain/repositories/user_repositories.dart';
-import 'package:provider_with_clean_architecture/ets/user/domain/usecase/post_usecase.dart';
-import 'package:provider_with_clean_architecture/ets/user/presentation/provider/post_page_provider.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -142,83 +125,4 @@ Future<void> init() async {
   registerUseCases();
 
   registerNotifier();
-
-//>>>>>>
-//
-//
-//
-//>>>>>>
-//
-//
-//
-//>>>>>>
-  //Resturent
-  //Register repository
-  sl.registerLazySingleton<StudentRepository>(
-    () => StudentRepositoryImpl(
-      studentDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
-  sl.registerLazySingleton<ResturentRepository>(
-    () => ResturentRepositoryImpl(
-      resturentDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
-
-  sl.registerLazySingleton<PostRepositories>(
-    () => PostRepositoriesImpl(
-      postDataSource: sl(),
-      networkInfo: sl(),
-    ),
-  );
-
-  //Register provider
-
-  sl.registerLazySingleton<StudentProvider>(
-      () => StudentProvider(studentUseCase: sl(), getStudentUseCase: sl()));
-
-  sl.registerLazySingleton<ResturentProvider>(
-    () => ResturentProvider(
-        resturentUseCase: sl(),
-        getResturentUseCase: sl(),
-        deleteResturentUseCase: sl(),
-        editResturentUseCase: sl()),
-  );
-
-  sl.registerLazySingleton<PostPageProvider>(
-      () => PostPageProvider(postUseCase: sl()));
-
-  // Register useCases
-
-  sl.registerLazySingleton<StudentUseCase>(
-      () => StudentUseCase(studentRepository: sl()));
-
-  sl.registerLazySingleton<ResturentUseCase>(
-      () => ResturentUseCase(resturentRepository: sl()));
-
-  sl.registerLazySingleton<GetResturentUseCase>(
-      () => GetResturentUseCase(resturentRepository: sl()));
-
-  sl.registerLazySingleton<DeleteResturentUseCase>(
-      () => DeleteResturentUseCase(resturentRepository: sl()));
-
-  sl.registerLazySingleton<EditResturentUseCase>(
-      () => EditResturentUseCase(resturentRepository: sl()));
-
-  sl.registerLazySingleton<PostUseCase>(
-      () => PostUseCase(postRepositories: sl()));
-
-  sl.registerLazySingleton<GetStudentUseCase>(
-      () => GetStudentUseCase(studentRepository: sl()));
-
-  /// Register data source
-  sl.registerLazySingleton<StudentDataSource>(
-    () => StudentDataSourceImpl(dioHttp: sl()),
-  );
-
-  sl.registerLazySingleton<ResturentDataSource>(
-    () => ResturentDataSourceImpl(dioHttp: sl()),
-  );
 }

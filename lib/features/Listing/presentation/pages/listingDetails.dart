@@ -127,45 +127,61 @@ class _ListingDetailsState extends ConsumerState<ListingDetails> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 16),
-                          if (widget.listingDetailsModel.discountPrice != null)
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Display the discount amount
-                                Text(
-                                  "Rs. ${widget.listingDetailsModel.regularPrice ?? 0}",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.grey,
-                                    decoration: TextDecoration
-                                        .lineThrough, // Strikethrough for regular price
-                                  ),
-                                ),
-                                if (widget.listingDetailsModel.discountPrice !=
-                                        null &&
-                                    widget.listingDetailsModel.discountPrice! >
-                                        0)
+                          if (widget.listingDetailsModel.offer == true) ...[
+                            if (widget.listingDetailsModel.discountPrice !=
+                                null)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Display the discount amount (Regular Price)
                                   Text(
-                                    "Rs. ${(widget.listingDetailsModel.regularPrice ?? 0) - (widget.listingDetailsModel.discountPrice ?? 0)}",
+                                    "Rs. ${widget.listingDetailsModel.regularPrice ?? 0}",
                                     style: const TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors
-                                          .green, // Display the final price in red
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey,
+                                      decoration: TextDecoration
+                                          .lineThrough, // Strikethrough for regular price
                                     ),
                                   ),
-                                if (widget.listingDetailsModel.discountPrice !=
-                                        null &&
-                                    widget.listingDetailsModel.discountPrice! >
-                                        0)
-                                  Text(
-                                    "Save Rs. ${widget.listingDetailsModel.discountPrice ?? 0} OFF",
-                                    style: const TextStyle(
-                                        fontSize: 18, color: Colors.red),
-                                  ),
-                              ],
-                            )
+                                  if (widget.listingDetailsModel
+                                              .discountPrice !=
+                                          null &&
+                                      widget.listingDetailsModel
+                                              .discountPrice! >
+                                          0)
+                                    Text(
+                                      "Rs. ${(widget.listingDetailsModel.regularPrice ?? 0) - (widget.listingDetailsModel.discountPrice ?? 0)}",
+                                      style: const TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors
+                                            .green, // Final price in green
+                                      ),
+                                    ),
+                                  if (widget.listingDetailsModel
+                                              .discountPrice !=
+                                          null &&
+                                      widget.listingDetailsModel
+                                              .discountPrice! >
+                                          0)
+                                    Text(
+                                      "Save Rs. ${widget.listingDetailsModel.discountPrice ?? 0} OFF",
+                                      style: const TextStyle(
+                                          fontSize: 18, color: Colors.red),
+                                    ),
+                                ],
+                              ),
+                          ] else ...[
+                            Text(
+                              "Rs. ${widget.listingDetailsModel.regularPrice ?? 0}",
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ]
                         ],
                       ),
                     ),
