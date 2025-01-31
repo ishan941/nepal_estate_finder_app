@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_with_clean_architecture/core/app_theme/app_theme.dart';
 import 'package:provider_with_clean_architecture/core/nef_custom/nef_padding.dart';
 import 'package:provider_with_clean_architecture/core/utils/color_util.dart';
 import 'package:provider_with_clean_architecture/core/utils/nef_spacing.dart';
@@ -33,7 +34,7 @@ class NefAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       title: Text(title, style: const TextStyle(color: whiteColor)),
-      backgroundColor: primaryColor,
+      // backgroundColor: lightColorScheme.primary,
       automaticallyImplyLeading: false,
       leading: showBackButton
           ? IconButton(

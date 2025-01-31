@@ -90,7 +90,7 @@ class NefSearchTextForm extends StatelessWidget {
           hintText: hintText,
           hintStyle: Theme.of(context)
               .textTheme
-              .subheadingRegular
+              .headlineSmall
               ?.copyWith(color: grey300),
           contentPadding: const EdgeInsets.symmetric(
               vertical: NefSpacing.spacing2, horizontal: NefSpacing.spacing4),

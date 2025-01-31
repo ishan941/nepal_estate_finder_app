@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+// import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,36 +38,43 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-  @override
-  void initState() {
-    deepLink();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   deepLink();
+  //   super.initState();
+  // }
 
-  deepLink() async {
-    final PendingDynamicLinkData? initialLink =
-        await FirebaseDynamicLinks.instance.getInitialLink();
+  // deepLink() async {
+  //   final PendingDynamicLinkData? initialLink =
+  //       await FirebaseDynamicLinks.instance.getInitialLink();
 
-    if (initialLink != null) {
-      final Uri deepLink = initialLink.link;
-    }
+  //   if (initialLink != null) {
+  //     final Uri deepLink = initialLink.link;
+  //   }
 
-    FirebaseDynamicLinks.instance.onLink.listen(
-      (pendingDynamicLinkData) {
-        if (pendingDynamicLinkData != null) {
-          final Uri deepLink = pendingDynamicLinkData.link;
-          _navigatorKey.currentState?.pushNamed(deepLink.path);
-        }
-      },
-    );
-  }
+  //   FirebaseDynamicLinks.instance.onLink.listen(
+  //     (pendingDynamicLinkData) {
+  //       if (pendingDynamicLinkData != null) {
+  //         final Uri deepLink = pendingDynamicLinkData.link;
+  //         _navigatorKey.currentState?.pushNamed(deepLink.path);
+  //       }
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: NefSplashScreen(),
+      // FlexColorScheme is not in use!
+      // Here is a default Material-3 starting point theme setup.
+      theme: ThemeData(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+      ),
+      themeMode: ThemeMode.system,
+      home: const NefSplashScreen(),
     );
   }
 }
