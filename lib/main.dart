@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-// import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -67,14 +66,17 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       navigatorKey: _navigatorKey,
       debugShowCheckedModeBanner: false,
-      // FlexColorScheme is not in use!
-      // Here is a default Material-3 starting point theme setup.
-      theme: ThemeData(),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      theme: ThemeHelper.lightTheme as ThemeData?,
+      darkTheme: ThemeHelper.darkTheme as ThemeData?,
       themeMode: ThemeMode.system,
       home: const NefSplashScreen(),
     );
   }
+}
+
+class ThemeHelper {
+  static final ThemeData lightTheme =
+      FlexThemeData.light(scheme: FlexScheme.blue);
+  static final ThemeData darkTheme =
+      FlexThemeData.dark(scheme: FlexScheme.blue);
 }
